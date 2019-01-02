@@ -1,0 +1,9 @@
+/* pages/library/map/f1.wxss */
+.seats {
+  display: flex;
+  width:30px;
+  height:30px;
+  justify-content: center;
+  font-size: 25rpx;
+  
+}

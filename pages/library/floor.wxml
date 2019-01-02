@@ -1,2 +1,5 @@
 <!--pages/library/floor.wxml-->
-<text>pages/library/floor.wxml</text>
+<view>
+  <button class='button' bindtap='gotoF1'> {{b1}}</button>
+  <button class='button' bindtap='gotoF2'> {{b2}}</button>
+</view>

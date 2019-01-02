@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/library/floor"
+    "pages/library/floor",
+    "pages/library/map/f1"
   ],
   "window": {
     "backgroundTextStyle": "light",
