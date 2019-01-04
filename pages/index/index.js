@@ -8,7 +8,8 @@ Page({
     b1: '开始选座',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    item_list:{}
   },
   //事件处理函数
   bindViewTap: function() {
@@ -47,23 +48,14 @@ Page({
     //连接Seats数据库
     var that = this;
     wx.request({
-      url:'http://localhost:80/CheckChackDB.php',//此处填写你后台请求地址
+      url:'http://localhost:80/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
       method: 'GET',
       header: {'Accept': 'application/json' },
-      data: {
-        // item_list: [{
-        //   seat_id = 'Defult',
-        //   statu,
-        //   create_time,
-        //   last_visit_time,
-        //   curr_user_info,
-        //   last_user_info
-        // }]
-      },
+      data: {},
       success: function (res) {
         // success
-        //console.log(res.data);//打印请求返回的结果
-        that.setData({ item_list: res.data })
+        //console.log(res.data);
+        that.setData({ item_list: res.data });
       },
       fail: function (res) {
         console.log("Can not connect to the sever.");
@@ -85,7 +77,7 @@ Page({
 
   gotoLibrary: function(){
     wx.navigateTo({
-      url: '/pages/library/floor',
+      url: '/pages/library/405',
     })
   }
 

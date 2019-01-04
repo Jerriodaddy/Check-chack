@@ -1,0 +1,23 @@
+.seatsEmpty { 
+  width:60%;  
+}
+
+.seatsTaken {
+  background-color: grey;
+  width:60%; 
+}
+
+.seatChecked{
+  background-color: rgb(46, 212, 46);
+  width:60%; 
+}
+
+.seatReserve{
+  background-color: yellow;
+  width:60%; 
+}
+
+.seatOperating{
+  background-color: red;
+  width:60%; 
+}

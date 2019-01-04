@@ -12,7 +12,25 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.request({
+      url: 'http://localhost:80/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
+      method: 'GET',
+      header: { 'Accept': 'application/json' },
+      data: {},
+      success: function (res) {
+        // success
+        //console.log(res.data);
+        that.setData({ item_list: res.data });
+      },
+      fail: function (res) {
+        console.log("Can not connect to the sever.");
+        // fail
+      },
+      complete: function (res) {
+        // complete
+      }
+    })
   },
 
   /**

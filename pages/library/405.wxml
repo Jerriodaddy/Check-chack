@@ -1,0 +1,19 @@
+<!--pages/library/405.wxml-->
+<!-- class='{{item.checked?"seatChecked":"seats"}}' -->
+<view wx:for='{{r405_statu}}' wx:key='item.seat_id'>
+  <button wx:if="{{item.statu==1}}" class='seatsTaken' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+  <button wx:elif="{{item.checked}}" class='seatChecked' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+  <button wx:elif="{{item.statu==2}}" class='seatReserve' hover-class='none' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+   <button wx:elif="{{item.statu==3}}" class='seatOperating' hover-class='none' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+  <button wx:else class='seatsEmpty' bindtap='checkThis' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+</view>
+
+<button bindtap='submit'>确认</button>
+  <popup id='popup' 
+    title='小组件' 
+    btn_no='Cancle' 
+    btn_ok='OK'
+    content='checkSeat: {{checkSeat}}' 
+    bind:error="_error"
+    bind:success="_success">
+  </popup>

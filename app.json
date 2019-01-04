@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/library/floor",
-    "pages/library/map/f1"
+    "pages/library/map/f1",
+    "pages/library/405"
   ],
   "window": {
     "backgroundTextStyle": "light",

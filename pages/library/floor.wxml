@@ -2,4 +2,5 @@
 <view>
   <button class='button' bindtap='gotoF1'> {{b1}}</button>
   <button class='button' bindtap='gotoF2'> {{b2}}</button>
+  <button class='button' bindtap='goto405'> 405</button>
 </view>
