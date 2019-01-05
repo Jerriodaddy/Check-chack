@@ -62,7 +62,7 @@ Page({
     console.log('Click OK');
     var that = this;
     wx.request({
-      url: 'http://localhost:80/CheckChackServer/selectSeat.php',
+      url: 'https://13a0fb2f.ngrok.io/CheckChackServer/selectSeat.php',
       data: {
         checked_id: that.data.checkSeat,
         user_info: that.data.userInfo.nickName,

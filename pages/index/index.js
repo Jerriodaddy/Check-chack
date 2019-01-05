@@ -46,7 +46,7 @@ Page({
     //连接Seats数据库
     var that = this;
     wx.request({
-      url:'http://localhost:80/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
+      url:'https://13a0fb2f.ngrok.io/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
       method: 'GET',
       header: {'Accept': 'application/json' },
       data: {},
