@@ -17,3 +17,5 @@
     bind:error="_error"
     bind:success="_success">
   </popup>
+
+  <text class="userinfo-nickname">A:{{userInfo.nickName}}</text>

@@ -9,10 +9,9 @@
   </view>
 
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
   </view>
 
-
-  <button type="default" size="default" bindtap='gotoLibrary'> {{b1}}</button>
+  <button type="default" size="default" bindtap='gotoLibrary'> 开始选座</button>
+  <button type="default" size="default" bindtap='quickSelect'> 快速选座</button>
 
 </view>

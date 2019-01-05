@@ -3,7 +3,7 @@ const CONF = {
   rootPathname: '',
 
   // 微信小程序 App ID
-  appId: 'xxxxxxxxxxxxxxxxx',
+  appId: '',
 
   // 微信小程序 App Secret
   appSecret: '',
@@ -16,14 +16,14 @@ const CONF = {
    * 若使用了腾讯云微信小程序解决方案
    * 开发环境下，MySQL 的初始密码为您的微信小程序 appid
    */
-  mysql: {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    db: 'CheckChack',
-    pass: 'xxxxxxxxxxxxxxxxx',
-    char: 'utf8mb4'
-  },
+  // mysql: {
+  //   host: 'localhost',
+  //   port: 3306,
+  //   user: 'root',
+  //   db: 'CheckChack',
+  //   pass: 'xxxxxxxxxxxxxxxxx',
+  //   char: 'utf8mb4'
+  // },
 
   cos: {
     /**

@@ -1,13 +1,19 @@
 // pages/library/405.js
+const app = getApp();
+
 Page({
 
   data: {
+    userInfo:{},
     r405_statu: {},
     checkSeat: ''
   },
-
+  
   onLoad: function (options) {
     this.popup = this.selectComponent("#popup");
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    })
     var that = this;
     wx.request({
       url: 'http://localhost:80/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
@@ -58,8 +64,8 @@ Page({
     wx.request({
       url: 'http://localhost:80/CheckChackServer/selectSeat.php',
       data: {
-        checked_id: this.data.checkSeat,
-        user_info: 'zz'
+        checked_id: that.data.checkSeat,
+        user_info: that.data.userInfo.nickName,
       },
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       method: 'POST',
@@ -69,7 +75,8 @@ Page({
       fail: function (res) {
         console.log("Can not connect to the sever.");
       },
-      complete: function (res) { },
+      complete: function (res) {
+      },
     })
     this.popup.hidePopup();
     wx.showToast({

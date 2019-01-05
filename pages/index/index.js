@@ -4,8 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'CheckChack',
-    b1: '开始选座',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -44,7 +42,7 @@ Page({
         }
       })
     }
-
+    
     //连接Seats数据库
     var that = this;
     wx.request({
