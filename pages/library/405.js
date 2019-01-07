@@ -16,7 +16,7 @@ Page({
     })
     var that = this;
     wx.request({
-      url: 'http://localhost:80/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
+      url: 'https://www.checkchack.cn/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
       method: 'GET',
       header: { 'Accept': 'application/json' },
       data: {},
@@ -62,7 +62,7 @@ Page({
     console.log('Click OK');
     var that = this;
     wx.request({
-      url: 'https://13a0fb2f.ngrok.io/CheckChackServer/selectSeat.php',
+      url: 'http://localhost/CheckChackServer/selectSeat.php',
       data: {
         checked_id: that.data.checkSeat,
         user_info: that.data.userInfo.nickName,

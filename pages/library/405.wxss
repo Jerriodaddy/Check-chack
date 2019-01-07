@@ -33,7 +33,7 @@
   background-color: rgba(255, 0, 0, 0.342);
 }
 .plane_graph{
-  background-image: url("http://localhost:80/CheckChackServer/image/r405.png");
+  background-image: url("https://www.checkchack.cn/CheckChackServer/image/r405.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position-y: 35rpx;
