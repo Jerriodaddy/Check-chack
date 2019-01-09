@@ -1,7 +1,0 @@
-<!--pages/library/map/f1.wxml-->
-<button class='seats'>A1</button>
-<button class='seats'>A2</button>
-<button class='seats'>A3</button>
-<button class='seats'>A4</button>
-<button class='seats'>A5</button>
-<button class='seats'>A6</button>

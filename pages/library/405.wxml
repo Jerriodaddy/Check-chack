@@ -1,13 +1,18 @@
 <!--pages/library/405.wxml-->
 <!-- class='{{item.checked?"seatChecked":"seats"}}' -->
+ 
 <view class='plane_graph'>
-  <!-- <button class='seatsTaken'></button> -->
-  <view wx:for='{{r405_statu}}' wx:key='item.seat_id'>
-    <button wx:if="{{item.statu==1}}" class='seatsTaken' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
-    <button wx:elif="{{item.checked}}" class='seatChecked' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
-    <button wx:elif="{{item.statu==2}}" class='seatReserve' hover-class='none' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
-    <button wx:elif="{{item.statu==3}}" class='seatOperating' hover-class='none' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
-    <button wx:else class='seatsEmpty' bindtap='checkThis' data-id='{{item.seat_id}}'>{{item.seat_id}}</button>
+  <!-- <zoomImgByView 
+    img_src="{{imgSrc}}"
+    view_width="{{viewWidth}}"
+    view_height="{{viewHeight}}"/> 
+  <button class='seatsTaken'></button> -->
+  <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
+    <button wx:if="{{item.statu==1}}" class='seatsTaken' data-id='{{item.seat_id}}' style='top:{{item.loca_y*3}}rpx; left:{{item.loca_x}}rpx'>{{item.seat_id}}</button>
+    <button wx:elif="{{item.checked}}" class='seatChecked' data-id='{{item.seat_id}}' style='top:{{item.loca_y*3}}rpx; left:{{item.loca_x}}rpx'>{{item.seat_id}}</button>
+    <button wx:elif="{{item.statu==2}}" class='seatReserve' hover-class='none' data-id='{{item.seat_id}}' style='top:{{item.loca_y*3}}rpx; left:{{item.loca_x}}rpx'>{{item.seat_id}}</button>
+    <button wx:elif="{{item.statu==3}}" class='seatOperating' hover-class='none' data-id='{{item.seat_id}}' style='top:{{item.loca_y*3}}rpx; left:{{item.loca_x}}rpx'>{{item.seat_id}}</button>
+    <button wx:else class='seatsEmpty' bindtap='checkThis' data-id='{{item.seat_id}}' style='top:{{item.loca_y*3}}rpx; left:{{item.loca_x}}rpx'>{{item.seat_id}}</button>
   </view>
 </view>
 

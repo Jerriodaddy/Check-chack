@@ -7,8 +7,6 @@
   background-color: grey;
   width: 30rpx; 
   height: 30rpx;
-  top: 15%;
-  margin-left: 43%;
 }
 
 .seatChecked{
@@ -31,15 +29,13 @@
 
 .submit{
   background-color: rgba(255, 0, 0, 0.342);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
+
 .plane_graph{
-  background-image: url("https://www.checkchack.cn/CheckChackServer/image/r405.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position-y: 35rpx;
-  background-position-x: center;
   background-color: rgba(255, 0, 0, 0.267);
-  margin: 25rpx;
-  height: 800rpx;
+  height: 1200rpx;
   
 }
