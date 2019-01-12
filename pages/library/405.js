@@ -1,8 +1,5 @@
 // pages/library/405.js
 const app = getApp();
-var mapsize = 320;
-// var room_seats_map_y = new Array();
-// var room_seats_map_x = new Array();
 Page({
 
   data: {
@@ -16,45 +13,27 @@ Page({
     this.zoomImgByView = this.selectComponent("#zoomImgByView");
     this.setData({
       userInfo: app.globalData.userInfo,
-
-      //for zoomImgByView component
-      viewHeight: 400,
-      viewWidth: 400,
-      imgSrc: "http://127.0.0.1/CheckChackServer/image/r405.png"
     })
-
-    //for zoomImgByView component
-    // wx.getSystemInfo({
-    //   success: res => {
-    //     this.setData({
-    //       viewHeight: res.windowHeight,
-    //       viewWidth: res.windowWidth,
-    //       imgSrc: "http://www.checkchack.cn/CheckChackServer/image/r405.png"
-    //     })
-    //   }
-    // })
 
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
+      url: 'https://www.checkchack.cn/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
       method: 'GET',
       header: { 'Accept': 'application/json' },
       data: {},
       success: function (res) {
-        // initialize map
-        // for(var y=0; y<mapsize; y++){
-        //   for(var x=0; x<mapsize; x++){
-        //     room_seats_map_x.push(0);
-        //   }
-        //   room_seats_map_y.push(room_seats_map_x[y])
-        // }
-        
-        // for(var i=0; i<res.data.length; i++){
-        //   var y = res.data[i].loca_y;
-        //   var x = res.data[i].loca_x;
-        //   room_seats_map_y.splice(x, 1, res.data[i]);
-        // }
-        that.setData({ room_seats_map: res.data });
+        that.setData({ room_seats_map: res.data })
+
+        //for zoomImgByView component
+        wx.getSystemInfo({
+          success: res => {
+            that.setData({
+              viewHeight: res.windowHeight,
+              viewWidth: res.windowWidth,
+              imgSrc: "https://www.checkchack.cn/CheckChackServer/image/r405.png",
+            })
+          }
+        })
       },
       fail: function (res) {
         console.log("Can not connect to the sever.");
@@ -65,27 +44,13 @@ Page({
       }
     })
   },
-  
-  checkThis: function (e) {
-    var that = this;
-    var this_checked = e.currentTarget.dataset.id;
-    var room_seats_mapList = that.data.room_seats_map;
-    for (var i = 0; i < room_seats_mapList.length; i++) {
-      if (room_seats_mapList[i].seat_id == this_checked) {
-        room_seats_mapList[i].checked = true;//当前点击的位置为true即选中
-      }
-      else {
-        room_seats_mapList[i].checked = false;//其他的位置为false
-      }
-    }
-    that.setData({
-      checkSeat: this_checked,
-      room_seats_map: room_seats_mapList
-    })
-  },
 
   submit: function(){
     this.popup.showPopup();
+  },
+
+  _checkThis: function(e){
+    this.setData({ checkSeat: e.detail })
   },
 
   //Popup ok
@@ -93,7 +58,7 @@ Page({
     console.log('Click OK');
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/CheckChackServer/selectSeat.php',
+      url: 'https://www.checkchack.cn/CheckChackServer/selectSeat.php',
       data: {
         checked_id: that.data.checkSeat,
         user_info: that.data.userInfo.nickName,
