@@ -15,7 +15,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (res) {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,28 +42,30 @@ Page({
         }
       })
     }
-    
-    //连接Seats数据库
-    var that = this;
-    wx.request({
-      url:'https://www.checkchack.cn/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
-      method: 'GET',
-      header: {'Accept': 'application/json' },
-      data: {},
-      success: function (res) {
-        // success
-        //console.log(res.data);
-        that.setData({ item_list: res.data });
-      },
-      fail: function (res) {
-        console.log("Can not connect to the sever.");
-        // fail
-      },
-      complete: function (res) {
-        // complete
-      }
-    })
+    //User checkin
+    if (res.scene){
+      const scene = decodeURIComponent(res.scene)
+      var that = this;
+      wx.request({
+        url: 'http://127.0.0.1/CheckChackServer/checkin.php',
+        data: {
+          scan_seat: that.data.checkSeat, //this will be set by scan QR cody
+          openId: app.globalData.openid,
+        },
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        method: 'POST',
+        success: function (res) {
+          console.log(res.data);
+        },
+        fail: function (res) {
+          console.log("Can not connect to the sever.");
+        }
+      })
+    }else{
+      console.log("no scene");
+    }
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -75,7 +77,7 @@ Page({
 
   gotoLibrary: function(){
     wx.navigateTo({
-      url: '/pages/library/405',
+      url: '/pages/library/room',
     })
   }
 

@@ -10,13 +10,15 @@
     bind:checkThis="_checkThis"/> 
 </view>
 
-
 <button class='submit' bindtap='submit'>确认</button>
   <popup id='popup' 
     title='小组件' 
-    btn_no='Cancle' 
+    btn_no='Cancel' 
     btn_ok='OK'
     content='checkSeat: {{checkSeat}}' 
     bind:error="_error"
     bind:success="_success">
   </popup>
+
+<button bindtap='checkin'>checkin</button>
+<button bindtap='checkout'>checkout</button>

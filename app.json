@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/library/floor",
-    "pages/library/405"
+    "pages/library/room"
   ],
   "window": {
     "backgroundTextStyle": "light",

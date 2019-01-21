@@ -36,10 +36,8 @@ Component({
     marginTop: 0,
     marginLeft: 0,
 
-    butMarginTop: 0,
-    butMarginLeft: 0,
-    but_x: 0.1,
-    but_y: 0.2, 
+    // butMarginTop: 0,
+    // butMarginLeft: 0,
     butWidth: 0,
     butHeight:0,
   },
@@ -67,8 +65,8 @@ Component({
       })
       //Wait the last set finishing.
       this.setData({
-        butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
-        butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+        // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+        // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
         butWidth: 0.03 * this.data.imgWidth,
         butHeight: 0.03 * this.data.imgWidth,
       })
@@ -100,8 +98,8 @@ Component({
           this.setData({
             marginTop: this.data.marginTop + yOffset,
             marginLeft: this.data.marginLeft + xOffset,
-            butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
-            butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+            // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+            // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
           })
           lastTouchPoint.x = e.touches[0].clientX
           lastTouchPoint.y = e.touches[0].clientY
@@ -162,8 +160,8 @@ Component({
         //此处的ratio为双指中心点在图片的百分比
         marginLeft: this.data.marginLeft + xRatio * this.data.imgWidth * (1 - f),
         marginTop: this.data.marginTop + yRatio * this.data.imgHeight * (1 - f),
-        butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
-        butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+        // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+        // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
         imgWidth: this.data.imgWidth * f,
         imgHeight: this.data.imgHeight * f,
         butWidth: this.data.butWidth * f,
@@ -198,37 +196,37 @@ Component({
       if (this.data.marginTop > 0) {
         this.setData({
           marginTop: this.data.marginTop - 4,
-          butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+          // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
         })
         if (this.data.marginTop - 4 < 0) {
           this.setData({
             marginTop: 0,
-            butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+            // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
           })
         }
       }
       if (this.data.marginLeft > 0) {
         this.setData({
           marginLeft: this.data.marginLeft - 4,
-          butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+          // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
         })
         if (this.data.marginLeft < 0) {
           this.setData({
             marginLeft: 0,
-            butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+            // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
           })
         }
       }
       if (this.data.marginLeft < 0 && (this.data.imgWidth - Math.abs(this.data.marginLeft)) < this.data.view_width) {
         this.setData({
           marginLeft: this.data.marginLeft + 4,
-          butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
+          // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
         })
       }
       if (this.data.marginTop < 0 && (this.data.imgHeight - Math.abs(this.data.marginTop)) < this.data.view_height) {
         this.setData({
           marginTop: this.data.marginTop + 4,
-          butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
+          // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
         })
       }
     },
