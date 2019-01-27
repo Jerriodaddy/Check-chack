@@ -1,0 +1,149 @@
+/* pages/profile/profile.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ff9430;
+  height: 368rpx;
+  width: 100%;
+}
+
+.ppic{
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.account-bg {
+  width: 100%;
+  height: 150rpx;
+}
+
+.userinfo-avatar {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+
+.userinfo-nickname {
+  color: #fff;
+}
+
+/* 订单 */
+
+.order {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 90rpx;
+  justify-content: space-between;
+}
+
+.myorder-text {
+  font-size: 30rpx;
+  color: gray;
+  margin: 20rpx;
+  width: 40%;
+  margin-left: 42rpx;
+}
+
+.myorderlook-text {
+  font-size: 30rpx;
+  color: gray;
+  position: relative;
+  right: 20rpx;
+  width: 60%;
+  text-align: right;
+}
+
+.next-image {
+  display: flex;
+  width: 40rpx;
+  height: 40rpx;
+  right: 10rpx;
+  margin-right: 30rpx;
+}
+
+.navs {
+  display: flex;
+}
+
+.nav-item {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+.nav-item .nav-image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 5rpx;
+}
+
+.nav-item text {
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: gray;
+}
+
+/* 列表 */
+
+.person-list {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80rpx;
+}
+
+.item-image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 20rpx;
+}
+
+.item-text {
+  color: gray;
+  font-size: 25rpx;
+  margin-left: 20rpx;
+}
+
+.person-line {
+  width: 100%;
+  height: 2rpx;
+  background: lightgray;
+  margin-left: 90rpx;
+}
+
+.separate{
+  display: flex;
+  background-color: #eee;
+  height: 15rpx;
+  width:100%;
+}
+
+.et{
+  color: rgb(202, 202, 202);
+  font-size: large;
+  justify-content: center;
+  align-content: center;
+  margin-top: 30rpx;
+}
+
+.edt{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

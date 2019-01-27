@@ -5,12 +5,12 @@ var interval_time = 3000; //10s=10000
 var interval_total = 6000; //5mins=300000
 Page({
   data: {
-    userInfo:{},
-    room_seats_map:{},
+    userInfo: {},
+    room_seats_map: {},
     checkSeat: 'NULL'
   },
-  
-  onLoad: function (options) {
+
+  onLoad: function(options) {
     this.popup = this.selectComponent("#popup");
     this.zoomImgByView = this.selectComponent("#zoomImgByView");
     this.setData({
@@ -18,12 +18,16 @@ Page({
     })
     var that = this;
     wx.request({
-      url: 'https://www.checkchack.cn/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
+      url: 'https://www.checkchack.cn/CheckChackServer/CheckChackDB.php', //此处填写你后台请求地址
       method: 'GET',
-      header: { 'Accept': 'application/json' },
+      header: {
+        'Accept': 'application/json'
+      },
       data: {},
-      success: function (res) {
-        that.setData({ room_seats_map: res.data })
+      success: function(res) {
+        that.setData({
+          room_seats_map: res.data
+        })
 
         //for zoomImgByView component
         wx.getSystemInfo({
@@ -36,24 +40,26 @@ Page({
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("Can not connect to the sever.");
         // fail
       },
-      complete: function (res) {
+      complete: function(res) {
         // complete
       }
     })
   },
 
-  _checkThis: function(e){
-    this.setData({ checkSeat: e.detail })
+  _checkThis: function(e) {
+    this.setData({
+      checkSeat: e.detail
+    })
   },
 
-  submit: function () {
+  submit: function() {
     this.popup.showPopup();
   },
-  
+
   //Popup ok
   _success() {
     console.log('Click OK');
@@ -65,12 +71,14 @@ Page({
         // user_info: that.data.userInfo.nickName,
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("Can not connect to the sever.");
       }
     })
@@ -96,16 +104,18 @@ Page({
         scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         that.onLoad();
 
         //kick out
-        var buf=res.data.split(';');
+        var buf = res.data.split(';');
         console.log(buf);
-        if(buf[0]==300){
-          console.log(buf[1]);//need a popup in the future
+        if (buf[0] == 300) {
+          console.log(buf[1]); //need a popup in the future
           //if Yes
           console.log("operating");
           wx.request({
@@ -114,25 +124,31 @@ Page({
               scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
               // openId: app.globalData.openid,
             },
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             method: 'POST',
-            success: function (res) {
+            success: function(res) {
               console.log(res.data);
               that.onLoad();
               //asking loop
               interval_num = setInterval(that.checkstate, interval_time);
-              
+
             },
-            fail: function (res) {console.log("Can not connect to the sever.");}
+            fail: function(res) {
+              console.log("Can not connect to the sever.");
+            }
           })
         }
 
       },
-      fail: function (res) {console.log("Can not connect to the sever.");}
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
     })
   },
 
-  checkstate(){
+  checkstate() {
     var that = this;
     wx.request({
       url: 'https://www.checkchack.cn/CheckChackServer/checkState_B.php',
@@ -141,24 +157,30 @@ Page({
         expect_state: '2'
         // openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
-        if (res.data == true){
-          that.setData({ checkres: true })
+      success: function(res) {
+        if (res.data == true) {
+          that.setData({
+            checkres: true
+          })
         }
         that.onLoad();
       },
-      fail: function (res) { console.log("Can not connect to the sever."); }
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
     })
-    if (this.data.checkres == true){
+    if (this.data.checkres == true) {
       clearInterval(interval_num);
       console.log("Kick out faild");
       return;
     }
     interval_total = interval_total - interval_time;
     //time out
-    if (interval_total < 0){
+    if (interval_total < 0) {
       console.log("time out")
       var that = this;
       wx.request({
@@ -168,13 +190,15 @@ Page({
           // user_info: that.data.userInfo.nickName,
           openId: app.globalData.openid,
         },
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         method: 'POST',
-        success: function (res) {
+        success: function(res) {
           console.log(res.data);
           that.onLoad();
         },
-        fail: function (res) {
+        fail: function(res) {
           console.log("Can not connect to the sever.");
         }
       })
@@ -184,20 +208,29 @@ Page({
     console.log(interval_total)
   },
 
-  checkout: function(){
+  checkout: function() {
     var that = this;
     wx.request({
       url: 'https://www.checkchack.cn/CheckChackServer/checkout.php',
       data: {
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         that.onLoad();
       },
-      fail: function (res) { console.log("Can not connect to the sever."); }
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
+    })
+  },
+  study: function() {
+    wx.navigateTo({
+      url: '../study/study',
     })
   }
 })

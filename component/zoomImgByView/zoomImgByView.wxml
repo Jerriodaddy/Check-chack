@@ -1,5 +1,5 @@
 <!--component/zoomImgByView.wxml-->
-<view style="position:relative;width:{{view_width}}px;height:{{view_height}}px;background:red">
+<view style="position:relative;width:{{view_width}}px;height:{{view_height}}px;background:white">
     <image
       id="mapImage"
       style="position:absolute;width:{{imgWidth}}px;height:{{imgHeight}}px;top:0px;bottom:0px;margin-top:{{marginTop}}px;margin-left:{{marginLeft}}px;"

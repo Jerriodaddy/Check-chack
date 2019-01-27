@@ -1,21 +1,68 @@
 /**index.wxss**/
-.userinfo {
+
+.slide-image {
+  width: 100%, ;
+}
+
+/* common */
+
+.bordern {
+  border-top: 6rpx solid#eee;
+  border-bottom: 6rpx solid#eee;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+/* 水平 */
+
+.hor {
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.forcast {
+  justify-content: space-around;
+  padding: 35rpx;
+  background-color: #fff;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+/* 内容提示条 */
+
+.borderl {
+  border-left: 6rpx solid#11fc11;
 }
 
-.usermotto {
-  margin-top: 200px;
+.word {
+  margin-left: 10rpx;
+  display: flex;
+  padding: 5rpx;
+  font-size: initial;
+}
+
+/* 分割线 */
+
+.borderb {
+  border-bottom: 1rpx solid #eee;
+}
+
+.red {
+  color: #ff9430;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.arrows {
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+}
+
+/* 暂时不能用的楼层及房间背景颜色 */
+
+.bc {
+  background-color: darkgray;
 }

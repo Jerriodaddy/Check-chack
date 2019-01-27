@@ -22,3 +22,4 @@
 
 <button bindtap='checkin'>checkin</button>
 <button bindtap='checkout'>checkout</button>
+<button bindtap='study'>study</button>

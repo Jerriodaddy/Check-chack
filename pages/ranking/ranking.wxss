@@ -1,0 +1,16 @@
+/* pages/ranking/ranking.wxss */
+page{
+  height: 100%;
+}
+
+.container{
+  height: 100%;
+  width: 100%;
+  background-color: rgb(207, 207, 207);
+  align-content: center;
+}
+.bg{
+color: rgb(136, 136, 136);
+font-size: large;
+margin-top: 30%;
+}

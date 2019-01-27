@@ -1,0 +1,63 @@
+<!--pages/profile/profile.wxml-->
+<view class="">
+
+  <view class="userinfo">
+    <view class='ppic'>
+      <image class="userinfo-avatar" src="../../assets/icons/Home.png" background-size="cover"></image>
+      <text class="userinfo-nickname">Guetta</text>
+    </view>
+  </view>
+
+  <!-- <view class="navs">
+    <block wx:for-items="{{orderItems}}" wx:key="name">
+      <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+        <image src="{{item.imageurl}}" class="nav-image" />
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view> -->
+
+  <view class="order" catchtap="toOrder">
+    <text class="myorder-text">Study history</text>
+    <image class="next-image" src="../../assets/icons/arrows1.png"></image>
+  </view>
+  <view class="line"></view>
+
+  <view class="separate"></view>
+  <view class="person-list">
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_1.png"></image>
+      <text class="item-text">Name:</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_2.png"></image>
+      <text class="item-text">Student ID:</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_3.png"></image>
+      <text class="item-text">Gender:</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_4.png"></image>
+      <text class="item-text">Contact:</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_5.png"></image>
+      <text class="item-text">Major:</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../assets/icons/profile_7.png"></image>
+      <text class="item-text">Motto:</text>
+    </view>
+    <view class="person-line"></view>
+  </view>
+  <view class='edt'>
+    <view class='et'>Edit</view>
+  </view>
+
+</view>
