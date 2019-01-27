@@ -42,28 +42,44 @@ Page({
         }
       })
     }
+
     //User checkin
-    if (res.scene){
-      const scene = decodeURIComponent(res.scene)
+    if (res.scene) {
+      const scene = decodeURIComponent(res.scene);
       var that = this;
-      wx.request({
-        url: 'http://127.0.0.1/CheckChackServer/checkin.php',
-        data: {
-          scan_seat: that.data.checkSeat, //this will be set by scan QR cody
-          openId: app.globalData.openid,
-        },
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
-        method: 'POST',
-        success: function (res) {
-          console.log(res.data);
-        },
-        fail: function (res) {
-          console.log("Can not connect to the sever.");
+      var interval = setInterval(
+        function () {
+          if (app.globalData.openid==null){
+            console.log("waiting openid...");
+          }else{
+            clearInterval(interval);
+            console.log("get openid = "+app.globalData.openid);
+            that.checkin(scene);
+          }
         }
-      })
-    }else{
+      , 1000);
+    } else {
       console.log("no scene");
     }
+  },
+
+  checkin: function (scene){
+    console.log("scene = "+scene);
+    wx.request({
+      url: 'http://127.0.0.1/CheckChackServer/checkin.php',
+      data: {
+        scan_seat: scene, //this will be set by scan QR cody
+        openId: app.globalData.openid,
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data);
+      },
+      fail: function (res) {
+        console.log("Can not connect to the sever.");
+      }
+    })
   },
 
   getUserInfo: function(e) {

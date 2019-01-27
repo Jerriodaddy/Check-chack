@@ -22,10 +22,28 @@ App({
           header: {
             'content-type': 'application/json' //默认值
           },
+          method: 'GET',
           success: function (res) {
+            console.log(res.data.openid);
             that.globalData.openid = res.data.openid;
             if (that.globalData.openid==null){
               console.log("openId is null");
+            }else{
+              //Is new user?
+              wx.request({
+                url: 'http://127.0.0.1/CheckChackServer/createUser.php',
+                data: {
+                  openId: res.data.openid,
+                },
+                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                method: 'POST',
+                success: function (res) {
+                  console.log(res.data);
+                },
+                fail: function (res) {
+                  console.log("Can not connect to the sever.");
+                }
+              })
             }
           }
         })

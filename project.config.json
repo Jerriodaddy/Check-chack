@@ -40,10 +40,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "Scan QR",
 					"pathName": "pages/index/index",
-					"query": "scene=hello",
+					"query": "scene=L405010",
 					"scene": "1047"
 				}
 			]
