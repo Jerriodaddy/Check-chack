@@ -1,0 +1,90 @@
+/* pages/comment/comment.wxss */
+page{
+  height: 100%;
+  width: 100%;
+}
+
+.bg {
+  background-color: rgba(252, 244, 221, 0.747);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.h1 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.hour {
+  font-size: x-large;
+  font-weight: bold;
+  color: gray;
+  margin-top: 100rpx;
+}
+
+.byd {
+  font-size: small;
+  vertical-align: middle;
+}
+
+.bydd {
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 600rpx;
+  vertical-align: middle;
+  display: flex;
+  margin-top: 100rpx;
+  margin-left: 50rpx;
+}
+
+.boxx {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 100rpx;
+}
+
+.box {
+  height: 150rpx;
+  width: 600rpx;
+  border: 2rpx solid darkgrey;
+  background-color: rgba(252, 244, 221, 0.747);
+}
+
+.btn {
+  height: 80rpx;
+  width: 600rpx;
+  background-color: rgb(20, 102, 255);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 200rpx;
+}
+
+.sub {
+  color: white;
+  font-size: large;
+}
+
+.ntc {
+  display: flex;
+  bottom: 0rpx;
+  margin-top: 180rpx;
+  margin-left: 30rpx;
+}
+
+.ntc2 {
+  color: darkgray;
+  font-size: x-small;
+}
+
+.hover {
+  background: rgb(0, 79, 226);
+}

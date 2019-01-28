@@ -1,0 +1,98 @@
+<!--pages/profile/profile.wxml-->
+<view class="">
+  <view class="userinfo">
+    <view class='ppic'>
+      <block wx:if="{{userInfo.avatarUrl.length > 0}}">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    </view>
+  </view>
+  <!-- <view class="navs">
+    <block wx:for-items="{{orderItems}}" wx:key="name">
+      <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+        <image src="{{item.imageurl}}" class="nav-image" />
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view> -->
+
+  <view class="order" catchtap="toOrder">
+    <text class="myorder-text">Study history</text>
+    <image class="next-image" src="../../assets/icons/arrows1.png"></image>
+  </view>
+  <view class="line"></view>
+
+  <view class="separate"></view>
+
+  <form bindsubmit="formSubmit">
+    <view class="person-list">
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_1.png"></image>
+        <text class="item-text">Name:</text>
+        <input wx:if="{{edit==true}}" class="form" name="name" value="{{myUserInfo.name}}"/>
+        <label wx:else class="form">{{myUserInfo.name}}</label>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_2.png"></image>
+        <text class="item-text">Student ID:</text>
+        <input wx:if="{{edit==true}}" class="form" name="studentId" value="{{myUserInfo.studentId}}" mode="number"/>
+        <label wx:else class="form">{{myUserInfo.studentId}}</label>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_3.png"></image>
+        <text class="item-text">Gender:</text>
+        <picker wx:if="{{edit==true}}" bindchange="genderChange" value="{{genderIndex}}" range="{{genderArray}}">
+          <label class="form">{{genderArray[genderIndex]}}</label>
+        </picker>
+        <view wx:else>
+          <label wx:if="{{myUserInfo.gender==0}}" class="form">Female</label>
+          <label wx:elif="{{myUserInfo.gender==1}}" class="form">Male</label>
+          <label wx:else class="form">Others</label>
+        </view>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_4.png"></image>
+        <text class="item-text">Phone:</text>
+        <input wx:if="{{edit==true}}" class="form" name="phone" value="{{myUserInfo.phone}}" mode="number"/>
+        <label wx:else class="form">{{myUserInfo.phone}}</label>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_5.png"></image>
+        <text class="item-text">Year:</text>
+        <picker wx:if="{{edit==true}}" bindchange="yearChange" value="{{yearIndex}}" range="{{yearArray}}">
+          <label class="form">{{yearArray[yearIndex]}}</label>
+        </picker>
+        <view wx:else>
+          <label wx:if="{{myUserInfo.year==0}}" class="form">Y1</label>
+          <label wx:elif="{{myUserInfo.year==1}}" class="form">Y2</label>
+          <label wx:elif="{{myUserInfo.year==2}}" class="form">Y3</label>
+          <label wx:elif="{{myUserInfo.year==3}}" class="form">Y4</label>
+          <label wx:else class="form">Graduate</label>
+        </view>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_5.png"></image>
+        <text class="item-text">Major:</text>
+      </view>
+      <view class="person-line"></view>
+      <view class="list-item">
+        <image class="item-image" src="../../assets/icons/profile_7.png"></image>
+        <text class="item-text">Motto:</text>
+        <input wx:if="{{edit==true}}" class="form" name="motto" value="{{myUserInfo.motto}}"/>
+        <label wx:else class="form">{{myUserInfo.motto}}</label>
+      </view>
+      <view class="person-line"></view>
+    </view>
+    <view class='edt'>
+      <view wx:if="{{edit == false}}" class='et' bindtap='edit'>Edit</view>
+      <button wx:else class='save' formType="submit">Save</button>
+    </view>
+  </form>
+</view>

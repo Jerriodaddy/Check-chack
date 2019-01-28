@@ -6,9 +6,15 @@ Page({
     b2: 'F2'
   },
 
-  gotoF1: function () {
+  goto405: function () {
     wx.navigateTo({
-      url: 'map/f1',
+      url: 'room',
+    })
+  },
+
+  quickstart: function(){
+    wx.navigateTo({
+      url: '../quickstart/quickstart',
     })
   }
 

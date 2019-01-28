@@ -7,12 +7,12 @@ var interval_i = interval_total;
 var reserve_time = 30000 //15mins=9000000
 Page({
   data: {
-    userInfo:{},
-    room_seats_map:{},
+    userInfo: {},
+    room_seats_map: {},
     checkSeat: 'NULL'
   },
-  
-  onLoad: function (options) {
+
+  onLoad: function(options) {
     this.popup = this.selectComponent("#popup");
     this.zoomImgByView = this.selectComponent("#zoomImgByView");
     this.setData({
@@ -22,10 +22,14 @@ Page({
     wx.request({
       url: 'http://127.0.0.1/CheckChackServer/CheckChackDB.php',//此处填写你后台请求地址
       method: 'GET',
-      header: { 'Accept': 'application/json' },
+      header: {
+        'Accept': 'application/json'
+      },
       data: {},
-      success: function (res) {
-        that.setData({ room_seats_map: res.data })
+      success: function(res) {
+        that.setData({
+          room_seats_map: res.data
+        })
 
         //for zoomImgByView component
         wx.getSystemInfo({
@@ -38,24 +42,26 @@ Page({
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("Can not connect to the sever.");
         // fail
       },
-      complete: function (res) {
+      complete: function(res) {
         // complete
       }
     })
   },
 
-  _checkThis: function(e){
-    this.setData({ checkSeat: e.detail })
+  _checkThis: function(e) {
+    this.setData({
+      checkSeat: e.detail
+    })
   },
 
-  submit: function () {
+  submit: function() {
     this.popup.showPopup();
   },
-  
+
   //Popup ok
   _success() {
     console.log('Click OK');
@@ -67,9 +73,11 @@ Page({
         // user_info: that.data.userInfo.nickName,
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         var buf = res.data.split(';');
         console.log(buf[0]);
@@ -103,16 +111,18 @@ Page({
         scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         that.onLoad();
 
         //kick out
-        var buf=res.data.split(';');
+        var buf = res.data.split(';');
         console.log(buf);
-        if(buf[0]==300){
-          console.log(buf[1]);//need a popup in the future
+        if (buf[0] == 300) {
+          console.log(buf[1]); //need a popup in the future
           //if Yes
           console.log("operating");
           wx.request({
@@ -121,21 +131,26 @@ Page({
               scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
               // openId: app.globalData.openid,
             },
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             method: 'POST',
-            success: function (res) {
+            success: function(res) {
               console.log(res.data);
               that.onLoad();
               //asking loop
               interval_num = setInterval(that.checkstate, interval_time, 2);
-              
             },
-            fail: function (res) {console.log("Can not connect to the sever.");}
+            fail: function(res) {
+              console.log("Can not connect to the sever.");
+            }
           })
         }
 
       },
-      fail: function (res) {console.log("Can not connect to the sever.");}
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
     })
   },
 
@@ -149,7 +164,9 @@ Page({
         expect_user: e_user
         // openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
       success: function (res) {
         console.log(res);
@@ -184,7 +201,9 @@ Page({
         }
         console.log(interval_i);
       },
-      fail: function (res) { console.log("Can not connect to the sever."); }
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
     })
   },
 
@@ -224,20 +243,29 @@ Page({
     })
   },
 
-  checkout: function(){
+  checkout: function() {
     var that = this;
     wx.request({
       url: 'http://127.0.0.1/CheckChackServer/checkout.php',
       data: {
         openId: app.globalData.openid,
       },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       method: 'POST',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         that.onLoad();
       },
-      fail: function (res) { console.log("Can not connect to the sever."); }
+      fail: function(res) {
+        console.log("Can not connect to the sever.");
+      }
+    })
+  },
+  study: function() {
+    wx.navigateTo({
+      url: '../study/study',
     })
   }
 })

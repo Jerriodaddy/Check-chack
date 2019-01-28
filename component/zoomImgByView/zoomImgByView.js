@@ -68,7 +68,7 @@ Component({
         // butMarginLeft: this.data.but_x * this.data.imgWidth + this.data.marginLeft,
         // butMarginTop: this.data.but_y * this.data.imgHeight + this.data.marginTop,
         butWidth: 0.03 * this.data.imgWidth,
-        butHeight: 0.03 * this.data.imgWidth,
+        butHeight: 0.03 * this.data.imgWidth, 
       })
       //打开定时器一直计算是否需要执行回弹动画
       setInterval(e => {
