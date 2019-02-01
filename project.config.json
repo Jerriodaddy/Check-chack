@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -37,14 +37,28 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "Scan QR",
 					"pathName": "pages/index/index",
 					"query": "scene=L405010",
-					"scene": "1047"
+					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "study page",
+					"pathName": "pages/study/study",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "study page",
+					"pathName": "packageA/pages/library/room",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,4 +1,3 @@
-<!--pages/library/405.wxml-->
 <!-- class='{{item.checked?"seatChecked":"seats"}}' -->
  
 <view class='plane_graph'>
@@ -10,7 +9,13 @@
     bind:checkThis="_checkThis"/> 
 </view>
 
-<button class='submit' bindtap='submit'>确认</button>
+ <view>
+  <form bindsubmit="formSubmit" report-submit='true'>
+    <!-- <input style='position:absolute' name="phone" value='Hello' mode="number"/> -->
+    <button class='submit' formType="submit">确认</button>
+  </form>
+</view>
+
   <popup id='popup' 
     title='小组件' 
     btn_no='Cancel' 
@@ -22,4 +27,3 @@
 
 <button bindtap='checkin'>checkin</button>
 <button bindtap='checkout'>checkout</button>
-<button bindtap='study'>study</button>

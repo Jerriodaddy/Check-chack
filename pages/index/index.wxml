@@ -14,44 +14,14 @@
 </view>
 
 <!-- 楼层表单 -->
-<!-- <view wx:for="{{[1,2,3,4,5]}}" wx:for-index="i" wx:for-item="item"> -->
-<view class="borderb">
-  <view class="hor forcast" bindtap='Toroom'>
-    <view class="b center">4th</view>
-    <view class="center">Floor</view>
-    <view class="red center">26 Free, 23°C</view>
-    <view class="red center">9%</view>
-    <image class="arrows" src="../../assets/icons/arrows1.png"></image>
+<view wx:for="{{librarySeats}}" wx:for-item="item" wx:key="item.space_num">
+  <view class="borderb">
+    <view class='{{item.space_num=="L4"?"hor forcast":"hor forcast bc"}}' bindtap='toFloor' data-id='{{index}}'>
+      <view class="b center">{{item.space_num}}</view>
+      <!-- <view class="center">Floor</view> -->
+      <view class="red center">{{item.empty_num}} Free</view>
+      <view class="red center">{{item.percentage}}%</view>
+      <image class="arrows" src="../../assets/icons/arrows1.png"></image>
+    </view>
   </view>
 </view>
-
-<view class="borderb">
-  <view class="hor forcast bc">
-    <view class="b center">3th</view>
-    <view class="center">Floor</view>
-    <view class="red center">0 Free, 0°C</view>
-    <view class="red center">0%</view>
-    <image class="arrows" src="../../assets/icons/arrows1.png"></image>
-  </view>
-</view>
-<view class="borderb">
-  <view class="hor forcast bc">
-    <view class="b center">2th</view>
-    <view class="center">Floor</view>
-    <view class="red center">0 Free, 0°C</view>
-    <view class="red center">0%</view>
-    <image class="arrows" src="../../assets/icons/arrows1.png"></image>
-  </view>
-</view>
-
-<view class="borderb">
-  <view class="hor forcast bc">
-    <view class="b center">1th</view>
-    <view class="center">Floor</view>
-    <view class="red center">0 Free, 0°C</view>
-    <view class="red center">0%</view>
-    <image class="arrows" src="../../assets/icons/arrows1.png"></image>
-  </view>
-</view>
-
-<!-- </view> -->

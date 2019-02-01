@@ -1,0 +1,38 @@
+<!--pages/library/floor.wxml-->
+<!-- 标题栏 -->
+<view class="forcast">
+  <view class="b ">{{floorInfo.space_num}}th Floor</view>
+  <view class="red ">{{floorInfo.empty_num}} Free</view>
+  <view class="red ">{{floorInfo.percentage}}%</view>
+</view>
+
+<view class="bigpic">
+  <!-- Rooms -->
+  
+  <view class="Rooms">
+    <view wx:for="{{floorSeats}}" wx:key="{{item.space_num}}">
+      <!--这里 两个房间 换行处理下呗 -->
+      <view class="hor line">
+        <button class='button bcp' bindtap='toRoom' data-id='{{item.space_num}}'>
+          <view class="center roomnumb">{{item.space_num}}</view>
+          <view class="center seats">{{item.empty_num}} Free</view>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Quick Start -->
+  <!-- Quickstart的位置也固定一哈 -->
+  <button class="qsb" hover-class='hover' bindtap='quickstart'>Quick Start</button>
+
+  <!-- Notice -->
+  <view class="nbox">
+    <view class="notice1">
+      <image class='warn' src='/assets/icons/warning.png'></image>
+      <text class="ntc2">Notice</text>
+    </view>
+    <text class="ntc">
+      To find a seat faster, you can try "Quick Start". And the behavior of illegal occupy of seats may exist. Every report is important.
+    </text>
+  </view>
+</view>

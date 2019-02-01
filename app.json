@@ -2,14 +2,22 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/library/floor",
-    "pages/library/room",
     "pages/profile/profile",
-    "pages/quickstart/quickstart",
-    "pages/study/study",
-    "pages/comment/comment",
     "pages/ranking/ranking"
   ],
+  "subpackages":[
+    {
+      "root": "packageA",
+      "pages":[
+        "pages/library/floor",
+        "pages/library/room",
+        "pages/quickstart/quickstart",
+        "pages/study/study",
+        "pages/comment/comment"
+      ]
+    }
+  ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -22,7 +30,7 @@
         "pagePath": "pages/ranking/ranking",
         "text": "Ranking",
         "iconPath": "assets/icons/Ranking.png",
-        "selectedIconPath": "assets/icons/ranking.png"
+        "selectedIconPath": "assets/icons/Ranking.png"
       },
       {
         "pagePath": "pages/index/index",

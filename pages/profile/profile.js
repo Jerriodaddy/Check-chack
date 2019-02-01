@@ -23,7 +23,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(app.globalData)
     var that = this;
     var interval = setInterval(
       function () {
@@ -32,7 +31,7 @@ Page({
         } else {
           clearInterval(interval);
           wx.request({
-            url: 'http://127.0.0.1/CheckChackServer/getThisUserInfo.php',
+            url: app.globalData.serverAddress +'/CheckChackServer/getThisUserInfo.php',
             data: {
               openId: app.globalData.openid,
             },
@@ -41,8 +40,9 @@ Page({
             success: function (res) {
               console.log(res.data);
               that.setData({
+                userInfo: app.globalData.userInfo,
                 myUserInfo: res.data,
-                userInfo: app.globalData.userInfo
+                genderIndex: res.data.gender
               })
             },
             fail: function (res) {
@@ -81,7 +81,7 @@ Page({
     //send to server
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/CheckChackServer/updateThisUser.php',
+      url: app.globalData.serverAddress+'/CheckChackServer/updateThisUser.php',
       data: {
         openId: app.globalData.openid,
         name: this.data.setMyUserInfo.name,

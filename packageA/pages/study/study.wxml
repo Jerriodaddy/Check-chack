@@ -5,11 +5,12 @@
   </view>
 
   <view class="cir">
-  <text class="djs">13:49</text>
+  <!-- <text class="djs">01:13:49</text> -->
+  <text class="djs">{{counter}}</text>
   </view>
 
   <view class="byd">
-    <image class="yes" src="../../assets/icons/yes.png"></image>
+    <image class="yes" src="/assets/icons/yes.png"></image>
     <view class="bydd">Your study time is beyond ??? users. Keep fighting!!!</view>
   </view>
 
@@ -20,7 +21,7 @@
     </view>
     <view class="btns">
       <button class="button1">Help</button>
-      <button class="button3" bindtap='toOut'>Check out</button>
+      <button class="button3" bindtap='checkout'>Check out</button>
     </view>
   </view>
 

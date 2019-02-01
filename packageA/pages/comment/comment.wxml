@@ -1,10 +1,10 @@
 <!-- pages/comment/comment -->
 <view class='bg'>
   <view class='h1'>
-    <view class='hour'>7 Hours 43 mins</view>
+    <view class='hour'>{{hh}} Hours {{mm}} mins</view>
   </view>
   <view class='bydd'>
-    <text class='byd'>Your study time beyonds 88% users!!</text>
+    <text class='byd'>Your total study time beyonds 88% users!!</text>
     <text class='byd'>Please give a feedback to this study experience.</text>
   </view>
   <view class='boxx'>
