@@ -13,8 +13,7 @@ Page({
     this.setData({
       floorInfo: floorInfo
     });
-    this.getSeats("L4","floorSeats", "2");
-    
+    this.getSeats(floorInfo.space_num,"floorSeats", "2");
   },
 
   getSeats: function (search_target = 'default', setArrayName, accuracy = '1') {

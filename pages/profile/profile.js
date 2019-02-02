@@ -42,7 +42,8 @@ Page({
               that.setData({
                 userInfo: app.globalData.userInfo,
                 myUserInfo: res.data,
-                genderIndex: res.data.gender
+                genderIndex: res.data.gender,
+                yearIndex: res.data.year
               })
             },
             fail: function (res) {
