@@ -6,7 +6,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options.hh)
     this.setData({
       hh: options.hh,
       mm: options.mm
