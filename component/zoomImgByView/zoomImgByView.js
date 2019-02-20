@@ -32,10 +32,10 @@ Component({
       this.setData({
         imgWidth: this.data.view_width,
         imgHeight: this.data.view_width * ratio,
-        view_width: this.data.view_width * 2,
+        view_width: this.data.view_width * 4,
         view_height: this.data.view_height * 2,
-        x: this.data.view_width / 2,
-        y: this.data.view_height / 2,
+        x: this.data.view_width*2,
+        y: this.data.view_height,
       })
     },
 

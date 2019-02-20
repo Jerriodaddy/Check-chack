@@ -2,7 +2,7 @@
 
 <view>
   <movable-area
-    style="height:{{view_height}}px; width:{{view_width}}px; top:{{-view_height/4}}px; left:{{-view_width/4}}px; background: red;"
+    style="height:{{view_height}}px; width:{{view_width}}px; top:{{-view_height/2}}px; left:{{-view_width/2}}px; background: red;"
     scale-area
   >
     <movable-view
