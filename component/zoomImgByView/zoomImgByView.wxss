@@ -4,25 +4,41 @@
 }
 
 .seatsEmpty { 
+  background-color: wheat;
   position:absolute;
+  border-radius: 50%;
+  width: 15rpx;
+  height: 15rpx;
 }
 
 .seatsTaken {
   background-color: grey;
   position:absolute;
+  border-radius: 50%;
+  width: 15rpx;
+  height: 15rpx;
 }
 
 .seatChecked{
   background-color: rgb(46, 212, 46);
   position:absolute;
+  border-radius: 50%;
+  width: 15rpx;
+  height: 15rpx;
 }
 
 .seatReserve{
   background-color: yellow;
   position:absolute;
+  border-radius: 50%;
+  width: 15rpx;
+  height: 15rpx;
 }
 
 .seatOperating{
   background-color: red;
   position:absolute;
+  border-radius: 50%;
+  width: 15rpx;
+  height: 15rpx;
 }

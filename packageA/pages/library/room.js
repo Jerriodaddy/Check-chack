@@ -23,8 +23,6 @@ Page({
       userInfo: app.globalData.userInfo,
       room: option.room
     })
-
-    this.reflash();
     //for zoomImgByView component
     var that = this;
     wx.getSystemInfo({
@@ -32,7 +30,7 @@ Page({
         that.setData({
           viewHeight: res.windowHeight,
           viewWidth: res.windowWidth,
-          imgSrc: app.globalData.serverAddress+"/CheckChackServer/image/r405.png",
+          imgSrc: app.globalData.serverAddress+"/CheckChackServer/image/r405.jpg",
         })
       }
     })
