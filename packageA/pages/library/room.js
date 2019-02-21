@@ -127,8 +127,8 @@ Page({
               data: {
                 touser: app.globalData.openid,
                 checked_seat: that.data.checkSeat,
-                formId: that.data.formId,
-                reserve_time: that.data.reserve_time
+                form_id: that.data.formId,
+                reserve_time: reserve_time
               },
               header: {
                 'content-type': 'application/x-www-form-urlencoded'

@@ -56,12 +56,12 @@ Component({
       this.triggerEvent('checkThis',this_checked);
     },
 
-    onChange(e) {
-      console.log(e.detail)
-    },
-    onScale(e) {
-      console.log(e.detail)
-    },
+    // onChange(e) {
+    //   console.log(e.detail)
+    // },
+    // onScale(e) {
+    //   console.log(e.detail)
+    // },
   }
 })
 

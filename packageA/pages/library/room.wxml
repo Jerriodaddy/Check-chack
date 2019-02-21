@@ -25,5 +25,5 @@
     bind:success="_success">
   </popup>
 
-<!-- <button bindtap='checkin'>checkin</button>
-<button bindtap='checkout'>checkout</button> -->
+<button bindtap='checkin'>checkin</button>
+<button bindtap='checkout'>checkout</button>
