@@ -2,13 +2,48 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/library/floor",
-    "pages/library/405"
+    "pages/profile/profile",
+    "pages/ranking/ranking"
   ],
+  "subpackages":[
+    {
+      "root": "packageA",
+      "pages":[
+        "pages/library/floor",
+        "pages/library/room",
+        "pages/quickstart/quickstart",
+        "pages/study/study",
+        "pages/comment/comment"
+      ]
+    }
+  ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "CheckChack",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/ranking/ranking",
+        "text": "Ranking",
+        "iconPath": "assets/icons/Ranking.png",
+        "selectedIconPath": "assets/icons/Ranking.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "Home",
+        "iconPath": "assets/icons/Home.png",
+        "selectedIconPath": "assets/icons/Home.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "Profile",
+        "iconPath": "assets/icons/Profile.png",
+        "selectedIconPath": "assets/icons/Profile.png"
+      }
+    ]
   }
 }

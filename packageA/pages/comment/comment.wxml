@@ -1,0 +1,20 @@
+<!-- pages/comment/comment -->
+<view class='bg'>
+  <view class='h1'>
+    <view class='hour'>{{hh}} Hours {{mm}} mins</view>
+  </view>
+  <view class='bydd'>
+    <text class='byd'>Your total study time beyonds 88% users!!</text>
+    <text class='byd'>Please give a feedback to this study experience.</text>
+  </view>
+  <view class='boxx'>
+    <view class='box'></view>
+  </view>
+  <button class='btn' hover-class='hover' bindtap='toHome'>
+    <view class="sub" bindtap='toHome'>Complete</view>
+  </button>
+
+  <view class='ntc'>
+    <view class='ntc2'>Have problems when using?Report to CheckChack team and we'll fix immediatly. The commit can be edited only one more time in 30 days.</view>
+  </view>
+</view>

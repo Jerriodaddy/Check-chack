@@ -1,0 +1,115 @@
+/* pages/study/study.wxss */
+page{
+  height: 100%;
+  width: 100%;
+}
+
+.bg {
+  background-color: rgba(252, 244, 221, 0.747);
+  bottom: 0rpx;
+  height: 100%;
+}
+
+.s1 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-weight: bold;
+  font-size: large;
+  color: dimgrey;
+  height: 100rpx;
+  width: 100%;
+  margin-bottom: 90rpx;
+}
+
+.s2 {
+  margin: 80rpx 50rpx;
+}
+
+.cir {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 3rpx solid orange;
+  border-radius: 50%;
+  background-color: rgba(252, 244, 221, 0.747);
+  height: 436rpx;
+  width: 436rpx;
+  margin: auto;
+  box-shadow: 0rpx 20rpx 100rpx 20rpx rgb(122, 122, 122);
+}
+
+.djs {
+  margin: auto;
+  font-size: xx-large;
+  color: orange;
+}
+
+.btn {
+  margin-top: 190rpx;
+  bottom: 0rpx;
+}
+
+.btns {
+  display: flex;
+  margin-top: 6rpx;
+}
+
+.button1 {
+  height: 90rpx;
+  width: 47%;
+  background-color: rgba(161, 161, 161, 0.747);
+  border: 3rpx solid orange;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: medium;
+  margin-right: 3rpx;
+  box-shadow: 0rpx 3rpx 3rpx 3rpx rgb(122, 122, 122);
+}
+
+.button2 {
+  height: 90rpx;
+  width: 47%;
+  background-color: rgba(161, 161, 161, 0.747);
+  border: 3rpx solid orange;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: medium;
+  margin-left: 3rpx;
+  box-shadow: 0rpx 3rpx 3rpx 3rpx rgb(122, 122, 122);
+}
+
+.button3 {
+  height: 90rpx;
+  width: 47%;
+  background-color: rgba(252, 244, 221, 0.747);
+  border: 3rpx solid orange;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: medium;
+  margin-left: 3rpx;
+  box-shadow: 0rpx 3rpx 3rpx 3rpx rgb(122, 122, 122);
+}
+
+.byd {
+  display: flex;
+  flex-direction: row;
+  margin-top: 110rpx;
+}
+
+.bydd {
+  display: flex;
+  padding-left: 10rpx;
+  font-size: medium;
+  color: rgb(75, 75, 75);
+}
+
+.yes {
+  margin: auto;
+  height: 50rpx;
+  width: 60rpx;
+  padding-left: 30rpx;
+}

@@ -1,17 +1,27 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<!-- 轮播图 -->
+<swiper class="swiper" indicator-dots="true" autoplay="ture" interval="5000" duration="1000" indicator-active-color="#0068CC" indicator-color="rgba(255, 255, 255, .3)">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 标题栏 -->
+<view class="borderl bordern">
+<view class="word">Study Areas Details</view>
+</view>
+
+<!-- 楼层表单 -->
+<view wx:for="{{librarySeats}}" wx:for-item="item" wx:key="item.space_num">
+  <view class="borderb">
+    <view class='{{item.space_num=="L4"?"hor forcast":"hor forcast bc"}}' bindtap='toFloor' data-id='{{index}}'>
+      <view class="b center">{{item.space_num}}</view>
+      <!-- <view class="center">Floor</view> -->
+      <view class="red center">{{item.empty_num}} Free</view>
+      <view class="red center">{{item.percentage}}%</view>
+      <image class="arrows" src="../../assets/icons/arrows1.png"></image>
+    </view>
   </view>
-
-  <view class="usermotto">
-  </view>
-
-  <button type="default" size="default" bindtap='gotoLibrary'> 开始选座</button>
-  <button type="default" size="default" bindtap='quickSelect'> 快速选座</button>
-
 </view>

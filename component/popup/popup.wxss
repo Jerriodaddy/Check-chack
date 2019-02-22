@@ -1,4 +1,9 @@
 /* component/popup.wxss */
+page{
+  height: 100%;
+  width: 100%;
+}
+
 .wx-popup {
   position: absolute;
   left: 0;
@@ -37,7 +42,7 @@
   justify-content: space-around;
   margin-bottom: 40rpx;
 }
-.wx-popup-btn text {
+.wx-popup-btn button {
   display: flex;
   align-items: center;
   justify-content: center;

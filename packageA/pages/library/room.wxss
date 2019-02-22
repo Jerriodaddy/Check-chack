@@ -1,0 +1,13 @@
+.submit{
+  background-color: rgba(252, 252, 252, 0.445);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.plane_graph{
+  background-color: rgba(252, 252, 252, 0.267);
+  height: 100vh;
+  
+}
+

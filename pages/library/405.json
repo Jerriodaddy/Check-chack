@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "popup": "/component/popup/popup",
-    "zoomImgByView": "/component/zoomImgByView/zoomImgByView"
-  }
-}

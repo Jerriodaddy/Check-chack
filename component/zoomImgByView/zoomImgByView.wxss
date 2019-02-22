@@ -1,1 +1,28 @@
 /* component/zoomImgByView.wxss */
+.button{
+  background-color: rgb(185, 62, 62);
+}
+
+.seatsEmpty { 
+  position:absolute;
+}
+
+.seatsTaken {
+  background-color: grey;
+  position:absolute;
+}
+
+.seatChecked{
+  background-color: rgb(46, 212, 46);
+  position:absolute;
+}
+
+.seatReserve{
+  background-color: yellow;
+  position:absolute;
+}
+
+.seatOperating{
+  background-color: red;
+  position:absolute;
+}

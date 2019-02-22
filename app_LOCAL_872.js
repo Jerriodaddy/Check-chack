@@ -2,9 +2,7 @@
 App({
   globalData: {
     userInfo: null,
-    openid: null,
-    serverAddress:'https://www.checkchack.cn'
-    // serverAddress: 'http://127.0.0.1'
+    openid: null
   },
 
   onLaunch: function () {
@@ -19,7 +17,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var that = this;
         wx.request({
-          url: that.globalData.serverAddress+'/CheckChackServer/login.php', //接口地址
+          url: 'https://www.checkchack.cn/CheckChackServer/login.php', //接口地址
           data: { code: res.code },
           header: {
             'content-type': 'application/json' //默认值
@@ -34,7 +32,6 @@ App({
               //Is new user?
               wx.request({
                 url: 'https://www.checkchack.cn/CheckChackServer/createUser.php',
-            
                 data: {
                   openId: res.data.openid,
                 },

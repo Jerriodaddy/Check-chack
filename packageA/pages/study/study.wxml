@@ -1,0 +1,28 @@
+<!--pages/study/study.wxml-->
+<view class="bg">
+  <view class="s1">
+  <text class="s2">Studying...</text>
+  </view>
+
+  <view class="cir">
+  <!-- <text class="djs">01:13:49</text> -->
+  <text class="djs">{{counter}}</text>
+  </view>
+
+  <view class="byd">
+    <image class="yes" src="/assets/icons/yes.png"></image>
+    <view class="bydd">Your study time is beyond ??? users. Keep fighting!!!</view>
+  </view>
+
+  <view class="btn">
+    <view class="btns">
+      <button class="button1">Lock</button>
+      <button class="button2">Community</button>
+    </view>
+    <view class="btns">
+      <button class="button1">Help</button>
+      <button class="button3" bindtap='checkout'>Check out</button>
+    </view>
+  </view>
+
+</view>
