@@ -37,11 +37,20 @@
   justify-content: space-around;
   margin-bottom: 40rpx;
 }
+/* .wx-popup-btn-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 88rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 88rpx;
+} */
 .wx-popup-btn button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 200rpx;
   height: 88rpx;
   border: 2rpx solid #ccc;
   border-radius: 88rpx;

@@ -2,7 +2,7 @@
 
 <view>
   <movable-area
-    style="height:{{view_height}}px; width:{{view_width}}px; top:{{-view_height/2}}px; left:{{-view_width/2}}px; background: red;"
+    style="height:{{view_height}}px; width:{{view_width}}px; top:{{correct_area_top}}px; left:{{correct_area_left}}px; background: red;"
     scale-area
   >
     <!-- bindchange="onChange"
@@ -10,9 +10,10 @@
     <movable-view
       direction="all"
       scale
-      scale-min="0.5"
-      scale-max="4"
-      scale-value="1"
+      bindscale="onScale"
+      scale-min="1"
+      scale-max="2"
+      scale-value="{{scale}}"
       out-of-bounds
       x="{{x}}"
       y="{{y}}"

@@ -22,6 +22,7 @@ Page({
     scene: '',
     librarySeats: {},
 
+    popupContent: 'Checkin result',
     // userInfo: {},
     // hasUserInfo: false,
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -62,7 +63,6 @@ Page({
       })
     }
     **********************************/
-
     //User checkin
     if (res.scene) {
       const scene = decodeURIComponent(res.scene);
@@ -122,6 +122,7 @@ Page({
 
   //Checkin
   checkin: function () {
+    this.popup = this.selectComponent("#popup");
     var that = this;
     wx.request({
       url: app.globalData.serverAddress + '/CheckChackServer/checkin.php',
@@ -136,86 +137,116 @@ Page({
       success: function (res) {
         var buf = res.data.split(';');
         console.log(buf);
-        switch (buf[0]) {
-          case "200": //seat
-            wx.navigateTo({
-              url: '/packageA/pages/study/study',
-            });
-            break;
-          case "300": //kick out
-            console.log(buf[1]); //need a popup in the future
-            //if Yes
-            wx.showModal({
-              title: 'Prompt',
-              content: buf[1],
-              cancelText: 'Cancel',
-              confirmText: 'Comfirm',
-              success(res) {
-                if (res.confirm) {
-                  console.log("operating");
-                  wx.request({
-                    url: app.globalData.serverAddress + '/CheckChackServer/setOperating_A.php',
-                    data: {
-                      scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-                      openId: app.globalData.openid,
-                    },
-                    header: {
-                      'content-type': 'application/x-www-form-urlencoded'
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                      console.log(res.data);
-                      wx.showToast({
-                        title: 'Success',
-                        icon: 'success',
-                        duration: 2000
-                      })
-                      that.reflash();
-                      //asking loop
-                      // interval_num = setInterval(that.checkstate, interval_time, 2);
-                      wx.request({
-                        url: app.globalData.serverAddress + '/CheckChackServer/kickoutTimer.php',
-                        data: {
-                          scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-                          openId: app.globalData.openid,
-                        },
-                        header: {
-                          'content-type': 'application/x-www-form-urlencoded'
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                          console.log(res.data);
-                        },
-                        fail: function (res) {
-                          console.log("Can not connect to the sever.");
-                        }
-                      })
-                    },
-                    fail: function (res) {
-                      console.log("Can not connect to the sever.");
-                    }
-                  })
-                } else if (res.cancel) {
-                  console.log('Click cancel')
-                }
-              }
-            })
-            break;
-          case "406":
-            wx.showToast({
-              title: res.data,
-              icon: 'none',
-              duration: 2000
-            })
-            break;
-          default:
-            console.log(buf);
-        }
+        that.setData({
+          popupContent:buf
+        })
+        that.popup.showPopup();//pop the comfirm window
       },
       fail: function (res) {
         console.log("Can not connect to the sever.");
       }
     })
+  },
+
+  _success() {
+    wx.request({
+      url: app.globalData.serverAddress + '/CheckChackServer/addForm_id.php',
+      data:{
+        openId: app.globalData.openid,
+        form_id: this.popup.data.formId,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function(res){
+        console.log("Added formId.");
+      },
+      fail: function () {
+        console.log("Can not connect to the sever.");
+      }
+    })
+
+    var buf = this.data.popupContent;
+    var that = this;
+    switch (buf[0]) {
+      case "200": //seat
+        wx.navigateTo({
+          url: '/packageA/pages/study/study',
+        });
+        break;
+      case "300": //kick out
+        //if Yes
+        console.log("operating");
+        wx.request({
+          url: app.globalData.serverAddress + '/CheckChackServer/setOperating_A.php',
+          data: {
+            scan_seat: that.data.scene, //this will be set by scan QR cody in the future
+            openId: app.globalData.openid,
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res.data);
+            wx.showToast({
+              title: 'Success',
+              icon: 'success',
+              duration: 2000
+            })
+            //asking loop
+            // interval_num = setInterval(that.checkstate, interval_time, 2);
+            wx.request({
+              url: app.globalData.serverAddress + '/CheckChackServer/kickoutTimer.php',
+              data: {
+                scan_seat: that.data.scene, //this will be set by scan QR cody in the future
+                openId: app.globalData.openid,
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res.data);
+              },
+              fail: function (res) {
+                console.log("Can not connect to the sever.");
+              }
+            })
+          },
+          fail: function (res) {
+            console.log("Can not connect to the sever.");
+          }
+        })
+        break;
+      case "406":
+        break;
+      default:
+    }
+    console.log('Click OK');
+    this.popup.hidePopup();
+  },
+  _error() {
+    console.log('Click Cancel');
+    wx.request({
+      url: app.globalData.serverAddress + '/CheckChackServer/addForm_id.php',
+      data: {
+        openId: app.globalData.openid,
+        form_id: this.popup.data.formId,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("Added formId.");
+      },
+      fail: function () {
+        console.log("Can not connect to the sever.");
+      }
+    })
+    this.popup.hidePopup();
   },
   // getUserInfo: function(e) {
   //   console.log(e)

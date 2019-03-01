@@ -25,3 +25,14 @@
     </view>
   </view>
 </view>
+
+<view>
+  <popup id='popup' 
+    title='Welcome to CheckChack' 
+    btn_no='Cancel' 
+    btn_ok='OK'
+    content='{{popupContent[1]}}' 
+    bind:error="_error"
+    bind:success="_success">
+  </popup>
+</view>

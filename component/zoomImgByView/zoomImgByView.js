@@ -1,4 +1,5 @@
 // // component/zoomImgByView.js
+var changeable = false;
 
 Component({
   properties: {
@@ -11,10 +12,10 @@ Component({
       type: Object
     },
     //可视区域的大小
-    view_width: {
+    ori_view_width: {
       type: String
     },
-    view_height: {
+    ori_view_height: {
       type: String
     }
   },
@@ -29,13 +30,20 @@ Component({
   methods: {
     _imgLoadEvent: function (event) {
       var ratio = event.detail.height / event.detail.width;
+      var view_width = this.data.ori_view_width*1.7;
+      var view_height = this.data.ori_view_height/2;
+      var correct_area_left = - view_width /2;
+      var correct_area_top = - view_height /2;
       this.setData({
-        imgWidth: this.data.view_width,
-        imgHeight: this.data.view_width * ratio,
-        view_width: this.data.view_width * 4,
-        view_height: this.data.view_height * 2,
-        x: this.data.view_width*2,
-        y: this.data.view_height,
+        imgWidth: this.data.ori_view_width,
+        imgHeight: this.data.ori_view_width * ratio,
+        view_width: view_width,
+        view_height: view_height,
+        correct_area_left: correct_area_left,
+        correct_area_top: correct_area_top,
+        x: view_width/2,
+        y: view_height/2,
+        ori_view_width: view_width,
       })
     },
 
@@ -57,11 +65,37 @@ Component({
     },
 
     // onChange(e) {
-    //   console.log(e.detail)
+    //   // console.log(e.detail)
+    //   if (this.data.x == this.data.view_width/2 && changeable == false){
+    //     changeable = true;
+    //     console.log(e.detail)
+    //   }
+    //   if (changeable == true){
+    //     this.setData({
+    //       x: e.detail.x,
+    //       y: e.detail.y,
+    //     })
+    //   }
     // },
-    // onScale(e) {
-    //   console.log(e.detail)
-    // },
+    onScale(e) {
+      console.log("scale"+e.detail.scale);
+      var ratio = e.detail.scale/2;
+      var px = this.data.x / this.data.view_width;
+      var py = this.data.y / this.data.view_height;
+      var view_width = this.data.ori_view_width * ratio;
+      var view_height = this.data.ori_view_height * ratio;
+      var correct_area_left = - view_width / 2;
+      var correct_area_top = - view_height / 2;
+      this.setData({
+        view_width: view_width,
+        view_height: view_height,
+        correct_area_left: correct_area_left,
+        correct_area_top: correct_area_top,
+        x: px * view_width,
+        y: py * view_height,
+        scale: e.detail.scale,
+      })
+    },
   }
 })
 

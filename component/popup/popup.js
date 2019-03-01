@@ -55,12 +55,20 @@ Component({
     * 内部私有方法建议以下划线开头
     * triggerEvent 用于触发事件
     */
-    _error() {
+    _error(e) {
       //触发取消回调
+      console.log("e.formId=" + e.detail.formId);
+      this.setData({
+        formId: e.detail.formId
+      });
       this.triggerEvent("error")
     },
-    _success() {
+    _success(e) {
       //触发成功回调
+      console.log("e.formId=" + e.detail.formId);
+      this.setData({
+        formId: e.detail.formId
+      });
       this.triggerEvent("success");
     }
   }
