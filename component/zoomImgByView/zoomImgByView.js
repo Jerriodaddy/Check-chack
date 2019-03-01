@@ -30,10 +30,10 @@ Component({
   methods: {
     _imgLoadEvent: function (event) {
       var ratio = event.detail.height / event.detail.width;
-      var view_width = this.data.ori_view_width*1.7;
-      var view_height = this.data.ori_view_height/2;
-      var correct_area_left = - view_width /2;
-      var correct_area_top = - view_height /2;
+      var view_width = 1;
+      var view_height = 1;
+      var correct_area_left = - view_width;
+      var correct_area_top = - view_height;
       this.setData({
         imgWidth: this.data.ori_view_width,
         imgHeight: this.data.ori_view_width * ratio,
@@ -41,9 +41,8 @@ Component({
         view_height: view_height,
         correct_area_left: correct_area_left,
         correct_area_top: correct_area_top,
-        x: view_width/2,
-        y: view_height/2,
-        ori_view_width: view_width,
+        x: view_width,
+        y: view_height,
       })
     },
 
@@ -78,21 +77,19 @@ Component({
     //   }
     // },
     onScale(e) {
-      console.log("scale"+e.detail.scale);
-      var ratio = e.detail.scale/2;
-      var px = this.data.x / this.data.view_width;
-      var py = this.data.y / this.data.view_height;
-      var view_width = this.data.ori_view_width * ratio;
-      var view_height = this.data.ori_view_height * ratio;
-      var correct_area_left = - view_width / 2;
-      var correct_area_top = - view_height / 2;
+      console.log("scale" + this.data.imgHeight);
+      var ratio = e.detail.scale;
+      var view_width = this.data.imgWidth * ratio - this.data.ori_view_width;
+      var view_height = this.data.imgHeight * ratio - this.data.ori_view_height/2;
+      var correct_area_left = - view_width;
+      var correct_area_top = - view_height;
       this.setData({
         view_width: view_width,
         view_height: view_height,
         correct_area_left: correct_area_left,
         correct_area_top: correct_area_top,
-        x: px * view_width,
-        y: py * view_height,
+        x: view_width,
+        y: view_height,
         scale: e.detail.scale,
       })
     },
