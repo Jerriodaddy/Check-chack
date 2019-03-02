@@ -31,20 +31,21 @@
   padding: 10rpx;
 }
 
-.button {
-  width: 340rpx;
-  height: 80rpx;
-  display: flex;
+.data-center{
   justify-content: center;
+  align-items: center;
+  display: block;
+  flex-direction: column;
 }
 
-
-  /*.unknown 
-  flex-wrap: wrap;
-  justify-content: space-between;
-  flex-direction: column;
+.button {
+  width: 380rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
   align-items: center;
-} */
+  /* flex-wrap: wrap; */
+}
 
 .Rooms {
   margin-top: 20rpx;

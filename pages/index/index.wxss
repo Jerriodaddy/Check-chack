@@ -1,22 +1,22 @@
 /**index.wxss**/
 page{
-  height: 100%;
   width:100%;
 }
 
-.swiper{
-  height: 360rpx;
+/* 轮播图宽高 */
+
+.swiper-size{
+  height: 300rpx;
 }
 
 .slide-image {
-  width: 100% ;
-  height:360rpx;
+  width: 100%;
+  height: 300rpx;
 }
 
 /* common */
 
 .bordern {
-  height: 60rpx;
   border-top: 6rpx solid#eee;
   border-bottom: 6rpx solid#eee;
 }
@@ -48,7 +48,7 @@ page{
   margin-left: 10rpx;
   display: flex;
   padding: 5rpx;
-  font-size: 36rpx;
+  font-size: initial;
 }
 
 /* 分割线 */
@@ -70,6 +70,12 @@ page{
   height: 50rpx;
   margin-left: 20rpx;
 }
+
+/* 可用楼层背景色 */
+
+/* .bcb{
+  background: linear-gradient(to left,rgb(255, 244, 244),rgb(255, 151, 132));
+} */
 
 /* 暂时不能用的楼层及房间背景颜色 */
 

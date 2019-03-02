@@ -3,11 +3,11 @@ App({
   globalData: {
     userInfo: null,
     openid: null,
-    serverAddress:'https://www.checkchack.cn'
+    serverAddress: 'https://www.checkchack.cn'
     // serverAddress: 'http://127.0.0.1'
   },
 
-  onLaunch: function () {
+  onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -19,31 +19,34 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var that = this;
         wx.request({
-          url: that.globalData.serverAddress+'/CheckChackServer/login.php', //接口地址
-          data: { code: res.code },
+          url: that.globalData.serverAddress + '/CheckChackServer/login.php', //接口地址
+          data: {
+            code: res.code
+          },
           header: {
             'content-type': 'application/json' //默认值
           },
           method: 'GET',
-          success: function (res) {
+          success: function(res) {
             console.log(res.data.openid);
             that.globalData.openid = res.data.openid;
-            if (that.globalData.openid==null){
+            if (that.globalData.openid == null) {
               console.log("openId is null");
-            }else{
+            } else {
               //Is new user?
               wx.request({
-                url: 'https://www.checkchack.cn/CheckChackServer/createUser.php',
-            
+                url: that.globalData.serverAddress + '/CheckChackServer/createUser.php',
                 data: {
                   openId: res.data.openid,
                 },
-                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
                 method: 'POST',
-                success: function (res) {
+                success: function(res) {
                   console.log(res.data);
                 },
-                fail: function (res) {
+                fail: function(res) {
                   console.log("Can not connect to the sever.");
                 }
               })
@@ -70,6 +73,11 @@ App({
           })
         }
       }
+    })
+    // 导航栏样式
+    wx.setTabBarStyle({
+      color: '#515151',
+      selectedColor: '#11fc11',
     })
   }
 })

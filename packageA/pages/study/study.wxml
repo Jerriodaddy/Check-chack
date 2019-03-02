@@ -24,5 +24,4 @@
       <button class="button3" bindtap='checkout'>Check out</button>
     </view>
   </view>
-
 </view>

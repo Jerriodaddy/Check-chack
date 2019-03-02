@@ -1,29 +1,33 @@
 <!-- class='{{item.checked?"seatChecked":"seats"}}' -->
- 
-<view class='plane_graph'>
-  <zoomImgByView 
-    img_src="{{imgSrc}}"
-    view_width="{{viewWidth}}"
-    view_height="{{viewHeight}}"
-    room_seats_map="{{room_seats_map}}"
-    bind:checkThis="_checkThis"/> 
-</view>
+<view class="">
+  <view class='plane_graph'>
+    <zoomImgByView img_src="{{imgSrc}}" view_width="{{viewWidth}}" view_height="{{viewHeight}}" room_seats_map="{{room_seats_map}}" bind:checkThis="_checkThis" />
+  </view>
 
- <view>
-  <form bindsubmit="formSubmit" report-submit='true'>
-    <!-- <input style='position:absolute' name="phone" value='Hello' mode="number"/> -->
-    <button class='submit' formType="submit">确认</button>
-  </form>
-</view>
-
-  <popup id='popup' 
-    title='小组件' 
-    btn_no='Cancel' 
-    btn_ok='OK'
-    content='checkSeat: {{checkSeat}}' 
-    bind:error="_error"
-    bind:success="_success">
+  <popup id='popup' title='小组件' btn_no='Cancel' btn_ok='OK' content='checkSeat: {{checkSeat}}' bind:error="_error" bind:success="_success">
   </popup>
 
-<button bindtap='checkin'>checkin</button>
-<button bindtap='checkout'>checkout</button>
+  <!-- 座位信息卡片 -->
+  <view class="seat-infocard" style="opacity:{{1}}">
+    <view class="seat-num-box">
+      <text class='seat-num'>You have chose seat No.001</text>
+    </view>
+
+    <view class="seat-notice-box">
+      <text class='seat-notice-word'>Please check-in in 15 minutes.</text>
+    </view>
+    
+    <view>
+      <form bindsubmit=" formSubmit " report-submit='true'>
+        <!-- <input style='position:absolute'   name="phone " value='Hello' mode="number "/> -->
+        <button class='submit' formType="submit ">Confirm</button>
+      </form>
+    </view>
+
+  </view>
+
+  <view class='temporary-button'>
+    <button bindtap='checkin'>checkin</button>
+    <button bindtap='checkout'>checkout</button>
+  </view>
+</view>

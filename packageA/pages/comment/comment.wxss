@@ -9,7 +9,7 @@ page{
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   height: 100%;
   width: 100%;
   z-index: -1;
@@ -18,7 +18,7 @@ page{
 .h1 {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 }
 
 .hour {
@@ -36,17 +36,18 @@ page{
 .bydd {
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   width: 600rpx;
   vertical-align: middle;
   display: flex;
   margin-top: 100rpx;
+  margin-left: 50rpx;
 }
 
 .boxx {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   margin-top: 100rpx;
 }
 
@@ -63,7 +64,7 @@ page{
   background-color: rgb(20, 102, 255);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   margin-top: 200rpx;
 }
 

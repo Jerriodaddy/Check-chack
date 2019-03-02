@@ -11,11 +11,18 @@
   
   <view class="Rooms">
     <view wx:for="{{floorSeats}}" wx:key="{{item.space_num}}">
-      <!--这里 两个房间 换行处理下呗 -->
       <view class="hor line">
         <button class='button bcp' bindtap='toRoom' data-id='{{item.space_num}}'>
+        <view class='data-center'>
           <view class="center roomnumb">{{item.space_num}}</view>
           <view class="center seats">{{item.empty_num}} Free</view>
+        </view>  
+        </button>
+        <button class='button bcp' bindtap='toRoom' data-id='{{item.space_num}}'>
+        <view class='data-center'>
+          <view class="center roomnumb">{{item.space_num}}</view>
+          <view class="center seats">{{item.empty_num}} Free</view>
+        </view>
         </button>
       </view>
     </view>

@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <!-- 轮播图 -->
-<swiper class="swiper" indicator-dots="true" autoplay="ture" interval="5000" duration="1000" indicator-active-color="#0068CC" indicator-color="rgba(255, 255, 255, .3)">
+<swiper class="swiper-size" indicator-dots="true" autoplay="ture" interval="5000" duration="1000" indicator-active-color="#0068CC" indicator-color="rgba(255, 255, 255, .3)">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
       <image src="{{item}}" class="slide-image"/>
@@ -16,7 +16,7 @@
 <!-- 楼层表单 -->
 <view wx:for="{{librarySeats}}" wx:for-item="item" wx:key="item.space_num">
   <view class="borderb">
-    <view class='{{item.space_num=="L4"?"hor forcast":"hor forcast bc"}}' bindtap='toFloor' data-id='{{index}}'>
+    <view class='{{item.space_num=="L4"?"hor forcast bcb":"hor forcast bc"}}' bindtap='toFloor' data-id='{{index}}'>
       <view class="b center">{{item.space_num}}</view>
       <!-- <view class="center">Floor</view> -->
       <view class="red center">{{item.empty_num}} Free</view>

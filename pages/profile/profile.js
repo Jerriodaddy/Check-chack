@@ -31,8 +31,7 @@ Page({
         } else {
           clearInterval(interval);
           wx.request({
-            url: 'https://www.checkchack.cn/CheckChackServer/getThisUserInfo.php',
-            
+            url: app.globalData.serverAddress +'/CheckChackServer/getThisUserInfo.php',
             data: {
               openId: app.globalData.openid,
             },
@@ -83,8 +82,7 @@ Page({
     //send to server
     var that = this;
     wx.request({
-      url: 'https://www.checkchack.cn/CheckChackServer/updateThisUser.php',
-     
+      url: app.globalData.serverAddress+'/CheckChackServer/updateThisUser.php',
       data: {
         openId: app.globalData.openid,
         name: this.data.setMyUserInfo.name,

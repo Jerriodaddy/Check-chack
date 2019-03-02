@@ -92,9 +92,7 @@ Page({
   getSeats: function (search_target = 'default', setArrayName, accuracy = '1'){
     var that = this;
     wx.request({
-
-      url: 'https://www.checkchack.cn/CheckChackServer/checkin.php',
-
+      url: app.globalData.serverAddress+'/CheckChackServer/searchSeats.php',
       data: {
         target: search_target,
         accuracy: accuracy
@@ -124,10 +122,9 @@ Page({
 
   //Checkin
   checkin: function () {
-    console.log("scene = " + this.data.scene);
     var that = this;
     wx.request({
-      url: app.globalData.serverAddress+'/CheckChackServer/checkin.php',
+      url: app.globalData.serverAddress + '/CheckChackServer/checkin.php',
       data: {
         scan_seat: that.data.scene, //this will be set by scan QR cody in the future
         openId: app.globalData.openid,
@@ -139,7 +136,7 @@ Page({
       success: function (res) {
         var buf = res.data.split(';');
         console.log(buf);
-        switch (buf[0]){
+        switch (buf[0]) {
           case "200": //seat
             wx.navigateTo({
               url: '/packageA/pages/study/study',
@@ -148,101 +145,78 @@ Page({
           case "300": //kick out
             console.log(buf[1]); //need a popup in the future
             //if Yes
-            console.log("operating");
-            wx.request({
-              url: app.globalData.serverAddress+'/CheckChackServer/setOperating_A.php',
-              data: {
-                scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-                openId: app.globalData.openid,
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res.data);
-                // that.onLoad();
-                //asking loop
-                interval_num = setInterval(that.checkstate, interval_time, 2);
-              },
-              fail: function (res) {
-                console.log("Can not connect to the sever.");
+            wx.showModal({
+              title: 'Prompt',
+              content: buf[1],
+              cancelText: 'Cancel',
+              confirmText: 'Comfirm',
+              success(res) {
+                if (res.confirm) {
+                  console.log("operating");
+                  wx.request({
+                    url: app.globalData.serverAddress + '/CheckChackServer/setOperating_A.php',
+                    data: {
+                      scan_seat: that.data.scene, //this will be set by scan QR cody in the future
+                      openId: app.globalData.openid,
+                    },
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                      console.log(res.data);
+                      wx.showToast({
+                        title: 'Success',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                      that.reflash();
+                      //asking loop
+                      // interval_num = setInterval(that.checkstate, interval_time, 2);
+                      wx.request({
+                        url: app.globalData.serverAddress + '/CheckChackServer/kickoutTimer.php',
+                        data: {
+                          scan_seat: that.data.scene, //this will be set by scan QR cody in the future
+                          openId: app.globalData.openid,
+                        },
+                        header: {
+                          'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                          console.log(res.data);
+                        },
+                        fail: function (res) {
+                          console.log("Can not connect to the sever.");
+                        }
+                      })
+                    },
+                    fail: function (res) {
+                      console.log("Can not connect to the sever.");
+                    }
+                  })
+                } else if (res.cancel) {
+                  console.log('Click cancel')
+                }
               }
+            })
+            break;
+          case "406":
+            wx.showToast({
+              title: res.data,
+              icon: 'none',
+              duration: 2000
             })
             break;
           default:
             console.log(buf);
         }
-
       },
       fail: function (res) {
         console.log("Can not connect to the sever.");
       }
     })
   },
-
-  checkstate(e_state = null, e_user = null) {
-    var that = this;
-    wx.request({
-      url: app.globalData.serverAddress+'/CheckChackServer/checkState_B.php',
-      data: {
-        scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-        expect_state: e_state,
-        expect_user: e_user,
-        openId: app.globalData.openid,
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res);
-        // that.onLoad();
-        if (res.data == true) {
-          clearInterval(interval_num);
-          console.log("Kick out faild");
-          return;
-        }
-        interval_i = interval_i - interval_time;
-        //time out
-        if (interval_i < 0) {
-          console.log("time out")
-          interval_i = interval_total;
-          wx.request({
-            url: app.globalData.serverAddress+'/CheckChackServer/kick_C.php',
-            data: {
-              scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-              openId: app.globalData.openid,
-            },
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
-            method: 'POST',
-            success: function (res) {
-              var buf = res.data.split(';');
-              console.log(buf);
-              switch (buf[0]) {
-                case "200": //seat
-                  wx.navigateTo({
-                    url: '/packageA/pages/study/study',
-                  });
-                  break;
-                default:
-                  console.log(buf);
-              }
-              // that.onLoad();
-            },
-            fail: function (res) { console.log("Can not connect to the sever."); }
-          })
-          clearInterval(interval_num);
-          return;
-        }
-        console.log(interval_i);
-      },
-      fail: function (res) {
-        console.log("Can not connect to the sever.");
-      }
-    })
-  },
-
   // getUserInfo: function(e) {
   //   console.log(e)
   //   app.globalData.userInfo = e.detail.userInfo
@@ -251,5 +225,4 @@ Page({
   //     hasUserInfo: true
   //   })
   // },
-
 })

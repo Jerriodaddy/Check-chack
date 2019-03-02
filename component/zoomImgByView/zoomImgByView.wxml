@@ -1,5 +1,44 @@
 <!--component/zoomImgByView.wxml-->
 
+<view>
+  <movable-area style="height:{{view_height}}px; width:{{view_width}}px;top:{{-view_height/2}}px; left:{{-view_width/2}}px; background: red;" scale-area>
+    <!-- bindchange="onChange"
+      bindscale="onScale" -->
+    <movable-view direction="all" scale scale-min="0.5" scale-max="4" scale-value="1" out-of-bounds x="{{x}}" y="{{y}}">
+
+      <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
+        <image wx:if="{{item.state==1}}" class='seatReserve' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px' />
+        <image wx:elif="{{item.checked}}" class='seatChecked' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px' />
+        <image wx:elif="{{item.state==2}}" class='seatsTaken' hover-class='none' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px' />
+        <image wx:elif="{{item.state==3}}" class='seatOperating' hover-class='none' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px' />
+        <image wx:else class='seatsEmpty' bindtap='_checkThis' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px' />
+      </view>
+
+
+
+      <image src="{{img_src}}" catchload="_imgLoadEvent" style="width:{{imgWidth}}px;height:{{imgHeight}}px;" />
+
+    </movable-view>
+  </movable-area>
+</view>
+
+
+
+
+
+
+<!-- Above Is Formal Version
+Following Set For Test Version 1.0.2 -->
+<!-- <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
+    <button wx:if="{{item.state==1}}" bindtap='_checkThis' class='seatReserve' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px'></button>
+    <button wx:elif="{{item.checked}}" bindtap='_checkThis' class='seatChecked' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px'></button>
+    <button wx:elif="{{item.state==2}}" bindtap='_checkThis' class='seatsTaken' hover-class='none' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px'></button>
+    <button wx:elif="{{item.state==3}}" bindtap='_checkThis' class='seatOperating' hover-class='none' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px'></button>
+    <button wx:else class='seatsEmpty' bindtap='_checkThis' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px'></button>
+  </view> -->
+
+
+<!-- 
 <view style="position:relative;width:{{view_width}}px;height:{{view_height}}px;background:white">
     <image
       id="mapImage"
@@ -10,9 +49,9 @@
       catchtouchstart='_touchStartEvent'
       catchtouchmove='_touchMoveEvent'
       catchtouchend='_touchEndEvent'
-      catchtouchcancel='_touchEndEvent'/>
+      catchtouchcancel='_touchEndEvent'/> -->
 
-    <!-- <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
+<!-- <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
     <button wx:if="{{item.state==1}}" class='seatReserve' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:elif="{{item.checked}}" class='seatChecked' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:elif="{{item.state==2}}" class='seatsTaken' hover-class='none' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
@@ -20,13 +59,12 @@
     <button wx:else class='seatsEmpty' bindtap='_checkThis' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
   </view> -->
 
-  <!-- Above Is Formal Version
+<!-- Above Is Formal Version
        Following Set For Test Version 1.0.2 -->
-  <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
+<!-- <view wx:for='{{room_seats_map}}' wx:key='item.seat_id'>
     <button wx:if="{{item.state==1}}" bindtap='_checkThis' class='seatReserve' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:elif="{{item.checked}}" bindtap='_checkThis' class='seatChecked' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:elif="{{item.state==2}}" bindtap='_checkThis' class='seatsTaken' hover-class='none' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:elif="{{item.state==3}}" bindtap='_checkThis' class='seatOperating' hover-class='none' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
     <button wx:else class='seatsEmpty' bindtap='_checkThis' data-id='{{item.seat_id}}' style='width:{{butWidth}}px;height:{{butHeight}}px;margin-top:{{item.loca_y * imgHeight + marginTop}}px;margin-left:{{item.loca_x * imgWidth + marginLeft}}px'>{{item.seat_id}}</button>
-  </view>
-</view>
+  </view> -->

@@ -1,19 +1,26 @@
 // pages/study/study.js
 const app = getApp();
 var interval_num;
+var hasInterval = false;
 var hh = 0;
 var mm = 0;
 var ss = 0;
 Page({
   data: {
-    counter: '00:00:00'
+    counter: "00:00:00",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    this.timer();
+  onShow: function(options) {
+    if (hasInterval == false){
+      this.timer();
+      hasInterval = true;
+    }else{
+      clearInterval(interval_num);
+      this.timer();
+    }
   },
 
   checkout: function () {
@@ -30,6 +37,8 @@ Page({
       success: function (res) {
         console.log(res.data);
         clearInterval(interval_num);
+        hasInterval = false;
+        hh,mm,ss = 0;
         wx.navigateTo({
           url: '../comment/comment?hh='+hh+'&mm='+mm,
         })

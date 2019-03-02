@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -55,9 +55,9 @@
 				},
 				{
 					"id": 2,
-					"name": "study page",
+					"name": "room page",
 					"pathName": "packageA/pages/library/room",
-					"query": "",
+					"query": "room=L405",
 					"scene": null
 				}
 			]
