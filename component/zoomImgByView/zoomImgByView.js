@@ -1,4 +1,5 @@
 // component/zoomImgByView.js
+var changeable = false;
 
 Component({
   properties: {
@@ -11,10 +12,10 @@ Component({
       type: Object
     },
     //可视区域的大小
-    view_width: {
+    ori_view_width: {
       type: String
     },
-    view_height: {
+    ori_view_height: {
       type: String
     }
   },
@@ -29,13 +30,19 @@ Component({
   methods: {
     _imgLoadEvent: function (event) {
       var ratio = event.detail.height / event.detail.width;
+      var view_width = 1;
+      var view_height = 1;
+      var correct_area_left = - view_width;
+      var correct_area_top = - view_height;
       this.setData({
-        imgWidth: this.data.view_width,
-        imgHeight: this.data.view_width * ratio,
-        view_width: this.data.view_width * 4,
-        view_height: this.data.view_height * 2,
-        x: this.data.view_width*2,
-        y: this.data.view_height,
+        imgWidth: this.data.ori_view_width,
+        imgHeight: this.data.ori_view_width * ratio,
+        view_width: view_width,
+        view_height: view_height,
+        correct_area_left: correct_area_left,
+        correct_area_top: correct_area_top,
+        x: view_width,
+        y: view_height,
       })
     },
 
@@ -57,11 +64,35 @@ Component({
     },
 
     // onChange(e) {
-    //   console.log(e.detail)
+    //   // console.log(e.detail)
+    //   if (this.data.x == this.data.view_width/2 && changeable == false){
+    //     changeable = true;
+    //     console.log(e.detail)
+    //   }
+    //   if (changeable == true){
+    //     this.setData({
+    //       x: e.detail.x,
+    //       y: e.detail.y,
+    //     })
+    //   }
     // },
-    // onScale(e) {
-    //   console.log(e.detail)
-    // },
+    onScale(e) {
+      console.log("scale" + this.data.imgHeight);
+      var ratio = e.detail.scale;
+      var view_width = this.data.imgWidth * ratio - this.data.ori_view_width;
+      var view_height = this.data.imgHeight * ratio - this.data.ori_view_height/2;
+      var correct_area_left = - view_width;
+      var correct_area_top = - view_height;
+      this.setData({
+        view_width: view_width,
+        view_height: view_height,
+        correct_area_left: correct_area_left,
+        correct_area_top: correct_area_top,
+        x: view_width,
+        y: view_height,
+        scale: e.detail.scale,
+      })
+    },
   }
 })
 

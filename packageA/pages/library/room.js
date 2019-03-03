@@ -67,7 +67,7 @@ Page({
   },
 
   formSubmit: function(e) {
-    console.log("e="+e.detail.formId);
+    console.log("e.formId="+e.detail.formId);
     this.setData({
       formId: e.detail.formId
     })
@@ -81,8 +81,9 @@ Page({
       wx.showToast({
         title: "You haven't chosen a seat.",
         icon: 'none',
-        duration: 2000
+        duration: 1500
       })
+      this.popup.hidePopup();
       return;
     }
     var that = this;
@@ -177,46 +178,6 @@ Page({
     console.log('Click Cancel');
     this.popup.hidePopup();
   },
-
-  // reservecheck(e_state = null, e_user = null){
-  //   var that = this;
-  //   wx.request({
-  //     url: app.globalData.serverAddress+'/CheckChackServer/checkState_B.php',
-  //     data: {
-  //       scan_seat: that.data.checkSeat,
-  //       expect_state: e_state,
-  //       expect_user: e_user
-  //       // openId: app.globalData.openid,
-  //     },
-  //     header: { 'content-type': 'application/x-www-form-urlencoded' },
-  //     method: 'POST',
-  //     success: function (res) {
-  //       console.log(res);
-  //       if (res.data == true) {
-  //         wx.showToast({
-  //           title: "Time out！Reserve faild.",
-  //           icon: 'none',
-  //           duration: 2000
-  //         })
-  //         wx.request({
-  //           url: app.globalData.serverAddress+'/CheckChackServer/cancelRsv.php',
-  //           data: {
-  //             openId: app.globalData.openid,
-  //           },
-  //           header: { 'content-type': 'application/x-www-form-urlencoded' },
-  //           method: 'POST',
-  //           success: function (res) {
-  //             console.log(res);
-  //             that.reflash();
-  //           },
-  //           fail: function (res) { console.log("Can not connect to the sever."); }
-  //         })
-  //       }
-  //       that.reflash();
-  //     },
-  //     fail: function (res) { console.log("Can not connect to the sever."); }
-  //   })
-  // },
 
   checkin: function () {
     var that = this;
@@ -315,69 +276,6 @@ Page({
       }
     })
   },
-
-  // checkstate(e_state = null, e_user = null) {
-  //   var that = this;
-  //   wx.request({
-  //     url: app.globalData.serverAddress+'/CheckChackServer/checkState_B.php',
-  //     data: {
-  //       scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
-  //       expect_state: e_state,
-  //       expect_user: e_user
-  //       // openId: app.globalData.openid,
-  //     },
-  //     header: {
-  //       'content-type': 'application/x-www-form-urlencoded'
-  //     },
-  //     method: 'POST',
-  //     success: function (res) {
-  //       console.log(res);
-  //       that.reflash();
-  //       if (res.data == true) {
-  //         clearInterval(interval_num);
-  //         console.log("Kick out faild");
-  //         return;
-  //       }
-  //       interval_i = interval_i - interval_time;
-  //       //time out
-  //       if (interval_i < 0) {
-  //         console.log("time out")
-  //         interval_i = interval_total;
-  //         wx.request({
-  //           url: app.globalData.serverAddress+'/CheckChackServer/kick_C.php',
-  //           data: {
-  //             scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
-  //             // user_info: that.data.userInfo.nickName,
-  //             openId: app.globalData.openid,
-  //           },
-  //           header: { 'content-type': 'application/x-www-form-urlencoded' },
-  //           method: 'POST',
-  //           success: function (res) {
-  //             var buf = res.data.split(';');
-  //             console.log(buf);
-  //             // switch (buf[0]) {
-  //             //   case "200": //seat
-  //             //     wx.navigateTo({
-  //             //       url: '/packageA/pages/study/study',
-  //             //     });
-  //             //     break;
-  //             //   default:
-  //             //     console.log(buf);
-  //             // }
-  //             that.reflash();
-  //           },
-  //           fail: function (res) { console.log("Can not connect to the sever."); }
-  //         })
-  //         clearInterval(interval_num);
-  //         return;
-  //       }
-  //       console.log(interval_i);
-  //     },
-  //     fail: function (res) {
-  //       console.log("Can not connect to the sever.");
-  //     }
-  //   })
-  // },
 
   checkout: function () {
     var that = this;

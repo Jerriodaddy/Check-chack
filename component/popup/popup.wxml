@@ -3,9 +3,16 @@
   <view class='popup-container'>
     <view class="wx-popup-title">{{title}}</view>
     <view class="wx-popup-con">{{content}}</view>
-    <view class="wx-popup-btn">     
-      <button bindtap='_error'>{{btn_no}}</button>
-      <button bindtap='_success'>{{btn_ok}}</button>
+    
+    <view class="wx-popup-btn">
+      <form bindsubmit="_error" report-submit='true'>    
+          <button formType='submit'>{{btn_no}}</button>
+      </form>
+      
+      <form bindsubmit="_success" report-submit='true'>
+          <button formType="submit">{{btn_ok}}</button>
+      </form>
     </view>
+
   </view>
 </view>
