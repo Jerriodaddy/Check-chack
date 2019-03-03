@@ -83,6 +83,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
+      this.popup.hidePopup();
       return;
     }
     var that = this;

@@ -42,3 +42,7 @@
   width: 15rpx;
   height: 15rpx;
 }
+
+.switchScale-btn{
+  position:absolute;
+}

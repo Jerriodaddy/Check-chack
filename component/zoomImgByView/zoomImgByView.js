@@ -1,6 +1,12 @@
 // // component/zoomImgByView.js
 var changeable = false;
-
+var scale = 1;
+var ori_view_width = 0;
+var ori_view_height = 0;
+var ori_img_width = 0;
+var ori_img_height = 0;
+var ori_btn_width = 15;
+var ori_btn_height = 15;
 Component({
   properties: {
     //图片地址
@@ -23,20 +29,26 @@ Component({
   data: {
     imgWidth: 0,
     imgHeight: 0,
-    x:0,
-    y:0,
+    btn_width: ori_btn_width,
+    btn_height: ori_btn_height,
   },
 
   methods: {
     _imgLoadEvent: function (event) {
-      var ratio = event.detail.height / event.detail.width;
-      var view_width = 1;
-      var view_height = 1;
+      var ratio = event.detail.height / event.detail.width; //图片长宽比
+      ori_view_width = this.data.ori_view_width;
+      ori_view_height = this.data.ori_view_height;
+      ori_img_width = this.data.ori_view_width;
+      ori_img_height = this.data.ori_view_width * ratio;
+      console.log(scale + " " + ori_view_width)
+
+      var view_width = 0;
+      var view_height = 0;
       var correct_area_left = - view_width;
       var correct_area_top = - view_height;
       this.setData({
-        imgWidth: this.data.ori_view_width,
-        imgHeight: this.data.ori_view_width * ratio,
+        imgWidth: ori_img_width,
+        imgHeight: ori_img_height,
         view_width: view_width,
         view_height: view_height,
         correct_area_left: correct_area_left,
@@ -76,24 +88,56 @@ Component({
     //     })
     //   }
     // },
-    onScale(e) {
-      console.log("scale" + this.data.imgHeight);
-      var ratio = e.detail.scale;
-      var view_width = this.data.imgWidth * ratio - this.data.ori_view_width;
-      var view_height = this.data.imgHeight * ratio - this.data.ori_view_height/2;
+
+
+    //方法1
+    // onScale(e) {
+    //   console.log("scale" + this.data.imgHeight);
+    //   var ratio = e.detail.scale;
+    //   var view_width = this.data.imgWidth * ratio - this.data.ori_view_width;
+    //   var view_height = this.data.imgHeight * ratio - this.data.ori_view_height/2;
+    //   var correct_area_left = - view_width;
+    //   var correct_area_top = - view_height;
+    //   this.setData({
+    //     view_width: view_width,
+    //     view_height: view_height,
+    //     correct_area_left: correct_area_left,
+    //     correct_area_top: correct_area_top,
+    //     x: view_width,
+    //     y: view_height,
+    //     scale: e.detail.scale,
+    //   })
+    // },
+    
+    //方法2
+    switchScale(){
+      if(scale == 1){
+        scale = 1.5;
+      }else{
+        scale = 1;
+      }
+      console.log(scale + " " + ori_view_width)
+      var imgWidth = ori_img_width * scale;
+      var imgHeight = ori_img_height * scale;
+      var view_width = imgWidth - this.data.ori_view_width;
+      var view_height = imgHeight - this.data.ori_view_height / 2;
       var correct_area_left = - view_width;
       var correct_area_top = - view_height;
       this.setData({
+        imgWidth: imgWidth,
+        imgHeight: imgHeight,
         view_width: view_width,
         view_height: view_height,
         correct_area_left: correct_area_left,
         correct_area_top: correct_area_top,
         x: view_width,
         y: view_height,
-        scale: e.detail.scale,
+        btn_width: ori_btn_width * scale,
+        btn_height: ori_btn_height * scale,
       })
-    },
+    }
   }
+
 })
 
 
