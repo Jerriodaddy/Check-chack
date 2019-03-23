@@ -1,4 +1,7 @@
 // component/popup.js
+const app = getApp();
+const util = require('../../utils/util.js');
+
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -58,18 +61,34 @@ Component({
     _error(e) {
       //触发取消回调
       console.log("e.formId=" + e.detail.formId);
-      this.setData({
-        formId: e.detail.formId
-      });
+      util.addFormId(e.detail.formId);
       this.triggerEvent("error")
     },
     _success(e) {
       //触发成功回调
       console.log("e.formId=" + e.detail.formId);
-      this.setData({
-        formId: e.detail.formId
-      });
+      util.addFormId(e.detail.formId);
       this.triggerEvent("success");
-    }
+    },
+
+    // addFormId(formId){
+    //   wx.request({
+    //     url: app.globalData.serverAddress + '/CheckChackServer/addForm_id.php',
+    //     data:{
+    //       openId: app.globalData.openid,
+    //       form_id: formId,
+    //     },
+    //     header: {
+    //       'content-type': 'application/x-www-form-urlencoded'
+    //     },
+    //     method: 'POST',
+    //     success: function(res){
+    //       console.log("Added formId.");
+    //     },
+    //     fail: function () {
+    //       console.log("Can not connect to the sever.");
+    //     }
+    //   })
+    // }
   }
 })

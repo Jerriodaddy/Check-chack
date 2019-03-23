@@ -1,12 +1,7 @@
 // pages/library/405.js
 const app = getApp();
+const util = require('../../../utils/util.js');
 
-var interval_num; // for setInterval()
-var interval_time = 3000; //10s=10000
-var interval_total = 15000; //5mins=300000
-var interval_i = interval_total;
-
-var reserve_time = '15mins' //only set for message sent to user, the real var set in server.
 Page({
   data: {
     userInfo: {},
@@ -71,6 +66,7 @@ Page({
     this.setData({
       formId: e.detail.formId
     })
+    util.addFormId(e.detail.formId);
     this.popup.showPopup();
   },
 
@@ -122,41 +118,6 @@ Page({
               title: 'Success',
               icon: 'success',
               duration: 2000
-            })
-            wx.request({
-              url: app.globalData.serverAddress + '/CheckChackServer/sendMessage.php',
-              data: {
-                touser: app.globalData.openid,
-                checked_seat: that.data.checkSeat,
-                form_id: that.data.formId,
-                reserve_time: reserve_time
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res)
-              },
-              fail: function (res) { console.log("Can not connect to the sever."); }
-            })
-            //reserving process: check if this seat owner is still this user && state is 1 in 15mins
-            //Yes? release the seat and set User state
-            // setTimeout(that.reservecheck, reserve_time, 1, app.globalData.openid);
-            wx.request({
-              url: app.globalData.serverAddress + '/CheckChackServer/reserveTimer.php',
-              data: {
-                openId: app.globalData.openid,
-                checked_seat: that.data.checkSeat,
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              method: 'POST',
-              // success: function (res) {
-              //   console.log(res)
-              // },
-              // fail: function (res) { console.log("Can not connect to the sever."); }
             })
             break;
           default:
@@ -212,7 +173,7 @@ Page({
                 if (res.confirm) {
                   console.log("operating");
                   wx.request({
-                    url: app.globalData.serverAddress + '/CheckChackServer/setOperating_A.php',
+                    url: app.globalData.serverAddress + '/CheckChackServer/setOperating.php',
                     data: {
                       scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
                       openId: app.globalData.openid,
@@ -229,25 +190,6 @@ Page({
                         duration: 2000
                       })
                       that.reflash();
-                      //asking loop
-                      // interval_num = setInterval(that.checkstate, interval_time, 2);
-                      wx.request({
-                        url: app.globalData.serverAddress + '/CheckChackServer/kickoutTimer.php',
-                        data: {
-                          scan_seat: that.data.checkSeat, //this will be set by scan QR cody in the future
-                          openId: app.globalData.openid,
-                        },
-                        header: {
-                          'content-type': 'application/x-www-form-urlencoded'
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                          console.log(res.data);
-                        },
-                        fail: function (res) {
-                          console.log("Can not connect to the sever.");
-                        }
-                      })
                     },
                     fail: function (res) {
                       console.log("Can not connect to the sever.");

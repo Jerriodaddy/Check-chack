@@ -52,8 +52,7 @@
     <image wx:else class='seatsEmpty' bindtap='_checkThis' data-id='{{item.seat_id}}' style='margin-top:{{item.loca_y * imgHeight}}px;margin-left:{{item.loca_x * imgWidth}}px;width:{{btn_width}}rpx;height:{{btn_height}}rpx'/>
     </view>
 
-    
-    
+
     <image 
       src="{{img_src}}"
       catchload="_imgLoadEvent"
@@ -63,13 +62,6 @@
   </movable-area>
 </view>
 <button class="switchScale-btn" bindtap='switchScale'>switchScale</button>
-
-
-
-
-
-
-
 
 <!-- Above Is Formal Version
 Following Set For Test Version 1.0.2 -->

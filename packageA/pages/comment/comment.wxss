@@ -44,19 +44,26 @@ page{
   margin-left: 50rpx;
 }
 
-.boxx {
+.box {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 100rpx;
+  /* margin-top: 100rpx; */
 }
 
-.box {
+.textarea {
+  border: 2rpx solid darkgrey;
+  padding: 0 15rpx;
+  background-color: #fff;
+  width: 80%;
+  font-size: 28rpx;
+}
+/* .box {
   height: 150rpx;
   width: 600rpx;
   border: 2rpx solid darkgrey;
   background-color: rgba(252, 244, 221, 0.747);
-}
+} */
 
 .btn {
   height: 80rpx;

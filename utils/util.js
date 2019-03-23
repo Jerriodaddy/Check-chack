@@ -1,3 +1,5 @@
+const app = getApp();
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -16,7 +18,28 @@ const formatNumber = n => {
 
 module.exports = {
   formatTime: formatTime,
+  addFormId : addFormId,
   // getSeats: getSeats
+}
+
+function addFormId(formId){
+  wx.request({
+    url: app.globalData.serverAddress + '/CheckChackServer/addForm_id.php',
+    data: {
+      openId: app.globalData.openid,
+      form_id: formId,
+    },
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    method: 'POST',
+    success: function (res) {
+      console.log("Added formId: "+formId);
+    },
+    fail: function () {
+      console.log("Can not connect to the sever.");
+    }
+  })
 }
 
 //return array of free seats info

@@ -122,6 +122,7 @@ Page({
 
   //Checkin
   checkin: function () {
+    console.log(this.data.scene);
     this.popup = this.selectComponent("#popup");
     var that = this;
     wx.request({
@@ -149,24 +150,6 @@ Page({
   },
 
   _success() {
-    wx.request({
-      url: app.globalData.serverAddress + '/CheckChackServer/addForm_id.php',
-      data:{
-        openId: app.globalData.openid,
-        form_id: this.popup.data.formId,
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      success: function(res){
-        console.log("Added formId.");
-      },
-      fail: function () {
-        console.log("Can not connect to the sever.");
-      }
-    })
-
     var buf = this.data.popupContent;
     var that = this;
     switch (buf[0]) {
@@ -179,7 +162,7 @@ Page({
         //if Yes
         console.log("operating");
         wx.request({
-          url: app.globalData.serverAddress + '/CheckChackServer/setOperating_A.php',
+          url: app.globalData.serverAddress + '/CheckChackServer/setOperating.php',
           data: {
             scan_seat: that.data.scene, //this will be set by scan QR cody in the future
             openId: app.globalData.openid,
@@ -195,25 +178,6 @@ Page({
               icon: 'success',
               duration: 2000
             })
-            //asking loop
-            // interval_num = setInterval(that.checkstate, interval_time, 2);
-            wx.request({
-              url: app.globalData.serverAddress + '/CheckChackServer/kickoutTimer.php',
-              data: {
-                scan_seat: that.data.scene, //this will be set by scan QR cody in the future
-                openId: app.globalData.openid,
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              method: 'POST',
-              success: function (res) {
-                console.log(res.data);
-              },
-              fail: function (res) {
-                console.log("Can not connect to the sever.");
-              }
-            })
           },
           fail: function (res) {
             console.log("Can not connect to the sever.");
@@ -227,6 +191,7 @@ Page({
     console.log('Click OK');
     this.popup.hidePopup();
   },
+
   _error() {
     console.log('Click Cancel');
     wx.request({

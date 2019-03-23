@@ -1,6 +1,7 @@
 // // component/zoomImgByView.js
 var changeable = false;
 var scale = 1;
+var scale_max;
 var ori_view_width = 0;
 var ori_view_height = 0;
 var ori_img_width = 0;
@@ -40,6 +41,7 @@ Component({
       ori_view_height = this.data.ori_view_height;
       ori_img_width = this.data.ori_view_width;
       ori_img_height = this.data.ori_view_width * ratio;
+      scale_max = ori_view_height / ori_img_height;
       console.log(scale + " " + ori_view_width)
 
       var view_width = 0;
@@ -112,7 +114,7 @@ Component({
     //方法2
     switchScale(){
       if(scale == 1){
-        scale = 1.5;
+        scale = scale_max;
       }else{
         scale = 1;
       }
