@@ -3,8 +3,8 @@ App({
   globalData: {
     userInfo: null,
     openid: null,
-    serverAddress:'https://www.checkchack.cn'
-    // serverAddress: 'http://127.0.0.1'
+    // serverAddress:'https://www.checkchack.cn'
+    serverAddress: 'http://127.0.0.1'
   },
 
   onLaunch: function () {

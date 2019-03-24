@@ -1,5 +1,6 @@
 // pages/comment/comment.js
-const util = require('../../../utils/util.js')
+const util = require('../../../utils/util.js');
+const app = getApp();
 
 Page({
   data: {
@@ -25,17 +26,34 @@ Page({
   complete(e){
     // util.addFormId(e.detail.formId);
     if(this.data.feedback!=""){
-      // this.toHome();
+      this.toHome();
       wx.showToast({
         title: "感谢反馈:)",
         icon: 'none',
         duration: 2000
       })
-    }else{
-      // this.toHome();
-    }
-    wx.require
 
+      var that=this;
+      wx.request({
+        url: app.globalData.serverAddress + '/CheckChackServer/addFeedback.php',
+        data: {
+          openId: app.globalData.openid,
+          feedback: that.data.feedback,
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log("Added feedback: " + that.data.feedback);
+        },
+        fail: function () {
+          console.log("Can not connect to the sever.");
+        }
+      })
+    }else{
+      this.toHome();
+    }
   },
 
   toHome() {
